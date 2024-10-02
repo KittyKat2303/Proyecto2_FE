@@ -13,27 +13,27 @@
         <form asp-action="Create" asp-controller="RegistroEmpleados" method="post">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
-                <label asp-for="Cedula" class="control-label">Digite la cédula:</label>
+                <label class="control-label">Digite la cédula:</label>
                 <input asp-for="Cedula" class="form-control" />
                 <span asp-validation-for="Cedula" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="FechaNacimiento" class="control-label">Seleccione la fecha de nacimiento:</label>
+                <label class="control-label">Seleccione la fecha de nacimiento:</label>
                 <input asp-for="FechaNacimiento" type="date" class="form-control" />
                 <span asp-validation-for="FechaNacimiento" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Lateralidad" class="control-label">Seleccione la lateralidad:</label>
+                <label class="control-label">Seleccione la lateralidad:</label>
                 <input asp-for="Lateralidad" class="form-control" />
                 <span asp-validation-for="Lateralidad" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="FechaIngreso" class="control-label">Seleccione la fecha de ingreso:</label>
+                <label class="control-label">Seleccione la fecha de ingreso:</label>
                 <input asp-for="FechaIngreso" type="date" class="form-control" />
                 <span asp-validation-for="FechaIngreso" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="SalarioHora" class="control-label">Digite el salario por hora:</label>
+                <label class="control-label">Digite el salario por hora:</label>
                 <input asp-for="SalarioHora" class="form-control" />
                 <span asp-validation-for="SalarioHora" class="text-danger"></span>
             </div>

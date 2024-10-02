@@ -6,7 +6,7 @@ namespace Proyecto1_KatherineMurillo.Controllers
 {
     public class RegistroEmpleados : Controller
     {
-        public IList<Empleados> listaEmpleados = new List<Empleados>();
+        private static IList<Empleados> listaEmpleados = new List<Empleados>();
         // GET: RegistroEmpleados
         public ActionResult Index()
         {           
