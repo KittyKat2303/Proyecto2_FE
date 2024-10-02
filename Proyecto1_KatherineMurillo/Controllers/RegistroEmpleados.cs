@@ -43,7 +43,7 @@ namespace Proyecto1_KatherineMurillo.Controllers
         }
 
         // GET: RegistroEmpleados/Edit/5
-        public ActionResult Edit(int id)
+        public ActionResult Edit(int id) //AbrirEditarEmpleado puedes ponerle ese nombre
         {
             return View();
         }
@@ -51,7 +51,7 @@ namespace Proyecto1_KatherineMurillo.Controllers
         // POST: RegistroEmpleados/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(Empleados empleadoEditado)
+        public ActionResult Edit(Empleados empleadoEditado) //EditEmpleado puedes ponerle ese nombre
         {
             try
             {
