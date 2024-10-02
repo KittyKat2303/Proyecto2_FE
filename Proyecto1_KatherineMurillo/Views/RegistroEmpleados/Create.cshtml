@@ -4,48 +4,48 @@
     ViewData["Title"] = "Create";
 }
 
-<h1>Create</h1>
+<h1 class="text-center mt-5" style="color:darkcyan">Registros</h1>
 
-<h4>Empleados</h4>
+<h4 class="text-center" style="color:darkcyan">Empleados</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
-        <form asp-action="Create">
+        <form asp-action="Create" asp-controller="RegistroEmpleados" method="post">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
-                <label asp-for="Cedula" class="control-label"></label>
+                <label asp-for="Cedula" class="control-label">Digite la cédula:</label>
                 <input asp-for="Cedula" class="form-control" />
                 <span asp-validation-for="Cedula" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="FechaNacimiento" class="control-label"></label>
-                <input asp-for="FechaNacimiento" class="form-control" />
+                <label asp-for="FechaNacimiento" class="control-label">Seleccione la fecha de nacimiento:</label>
+                <input asp-for="FechaNacimiento" type="date" class="form-control" />
                 <span asp-validation-for="FechaNacimiento" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Lateralidad" class="control-label"></label>
+                <label asp-for="Lateralidad" class="control-label">Seleccione la lateralidad:</label>
                 <input asp-for="Lateralidad" class="form-control" />
                 <span asp-validation-for="Lateralidad" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="FechaIngreso" class="control-label"></label>
-                <input asp-for="FechaIngreso" class="form-control" />
+                <label asp-for="FechaIngreso" class="control-label">Seleccione la fecha de ingreso:</label>
+                <input asp-for="FechaIngreso" type="date" class="form-control" />
                 <span asp-validation-for="FechaIngreso" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="SalarioHora" class="control-label"></label>
+                <label asp-for="SalarioHora" class="control-label">Digite el salario por hora:</label>
                 <input asp-for="SalarioHora" class="form-control" />
                 <span asp-validation-for="SalarioHora" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
+                <input type="submit" value="Guardar" class="btn btn-success" />
             </div>
         </form>
     </div>
 </div>
 
 <div>
-    <a asp-action="Index">Back to List</a>
+    <a asp-action="Index" asp-controller="RegistroEmpleados">Regresar al listado</a>
 </div>
 
 @section Scripts {

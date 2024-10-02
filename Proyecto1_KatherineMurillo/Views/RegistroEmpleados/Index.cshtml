@@ -4,28 +4,28 @@
     ViewData["Title"] = "Index";
 }
 
-<h1>Index</h1>
+<h1>Listado Registro Empleados</h1>
 
 <p>
-    <a asp-action="Create">Create New</a>
+    <a asp-action="Create" asp-controller="RegistroEmpleados">Crear Nuevo</a>
 </p>
-<table class="table">
-    <thead>
+<table class="table table-hover">
+    <thead class="thead-dark">
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.Cedula)
+                Cedula
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.FechaNacimiento)
+                Fecha Nacimiento
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Lateralidad)
+                Lateralidad
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.FechaIngreso)
+                Fecha Ingreso
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.SalarioHora)
+                Salario Hora
             </th>
             <th></th>
         </tr>
