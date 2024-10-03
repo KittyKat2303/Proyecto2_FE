@@ -68,8 +68,7 @@ namespace Proyecto1_KatherineMurillo.Controllers
                         empleadoEditar.FechaNacimiento = empleadoEditado.FechaNacimiento;
                         empleadoEditar.Lateralidad = empleadoEditado.Lateralidad;
                         empleadoEditar.FechaIngreso = empleadoEditado.FechaIngreso;
-                        empleadoEditar.SalarioHora = empleadoEditado.SalarioHora; 
-                        listaEmpleados.Add(empleadoEditado);
+                        empleadoEditar.SalarioHora = empleadoEditado.SalarioHora;                        
                     }                    
                 }
                 return RedirectToAction(nameof(Index));
