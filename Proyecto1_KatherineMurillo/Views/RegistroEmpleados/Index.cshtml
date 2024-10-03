@@ -4,10 +4,10 @@
     ViewData["Title"] = "Index";
 }
 
-<h1>Index</h1>
-
+<h1>Lista de empleados</h1>
+<hr />
 <p>
-    <a asp-action="Create">Create New</a>
+    <a asp-action="Create">Crear nuevo empleado</a>
 </p>
 <table class="table">
     <thead>
@@ -50,7 +50,7 @@
             </td>
             <td>
                 @Html.ActionLink("Edit", "Edit", new { id = item.Cedula }) |
-                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+                @Html.ActionLink("Delete", "Delete", new {  id = item.Cedula })
             </td>
         </tr>
 }

@@ -15,7 +15,7 @@ namespace Proyecto1_KatherineMurillo.Models
         [Required(ErrorMessage = "La fecha de ingreso es requerida")]
         [Display(Name = "Fecha de Ingreso")]
         public DateTime FechaIngreso { get; set; }
-        [Required(ErrorMessage = "El salario por hora es requerida")]
+        [Required(ErrorMessage = "El salario por hora es requerido")]
         [Display(Name = "Salario por hora")]
         public float SalarioHora { get; set; }
     }
