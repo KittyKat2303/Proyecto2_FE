@@ -6,10 +6,12 @@ namespace Proyecto1_KatherineMurillo.Controllers
 {
     public class RegistroEmpleados : Controller
     {
+
         private static IList<Empleados> listaEmpleados = new List<Empleados>();
+
         // GET: RegistroEmpleados
         public ActionResult Index()
-        {           
+        {          
             return View(listaEmpleados);
         }       
 
@@ -45,6 +47,11 @@ namespace Proyecto1_KatherineMurillo.Controllers
         // GET: RegistroEmpleados/Edit/5
         public ActionResult Edit(int id) //AbrirEditarEmpleado puedes ponerle ese nombre
         {
+            if (listaEmpleados.Any())
+            {
+                Empleados empleadoEditar = listaEmpleados.FirstOrDefault(empleado => empleado.Cedula == id);
+                return View(empleadoEditar);
+            }
             return View();
         }
 
@@ -55,6 +62,17 @@ namespace Proyecto1_KatherineMurillo.Controllers
         {
             try
             {
+                if (listaEmpleados.Any())
+                {
+                    Empleados empleadoEditar = listaEmpleados.FirstOrDefault(empleado => empleado.Cedula == empleadoEditado.Cedula);
+                    if (empleadoEditar != null) {
+                        empleadoEditar.Cedula = empleadoEditado.Cedula;
+                        empleadoEditar.FechaNacimiento = empleadoEditado.FechaNacimiento;
+                        empleadoEditar.Lateralidad = empleadoEditado.Lateralidad;
+                        empleadoEditar.FechaIngreso = empleadoEditado.FechaIngreso;
+                        empleadoEditar.SalarioHora = empleadoEditado.SalarioHora;                        
+                    }                    
+                }
                 return RedirectToAction(nameof(Index));
             }
             catch
@@ -66,16 +84,29 @@ namespace Proyecto1_KatherineMurillo.Controllers
         // GET: RegistroEmpleados/Delete/5
         public ActionResult Delete(int id)
         {
-            return View();
+            Empleados empleadoEliminar = listaEmpleados.FirstOrDefault(empleado => empleado.Cedula == id);
+
+            if (empleadoEliminar == null)
+            {
+                return RedirectToAction(nameof(Index));
+            }
+
+            return View(empleadoEliminar); 
         }
 
         // POST: RegistroEmpleados/Delete/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Delete(Empleados empleadoEditado)
+        public ActionResult Delete(Empleados empleadoEliminado)
         {
             try
             {
+                Empleados empleadoEliminar = listaEmpleados.FirstOrDefault(empleado => empleado.Cedula == empleadoEliminado.Cedula);
+
+                if (empleadoEliminar != null)
+                {
+                    listaEmpleados.Remove(empleadoEliminar);
+                }
                 return RedirectToAction(nameof(Index));
             }
             catch
