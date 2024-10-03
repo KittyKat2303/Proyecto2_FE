@@ -1,0 +1,58 @@
+﻿@model Proyecto1_KatherineMurillo.Models.Inventario
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Editar inventario</h1>
+
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="IdInventario" class="control-label"></label>
+                <input asp-for="IdInventario" class="form-control" readonly />
+                <span asp-validation-for="IdInventario" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Descripcion" class="control-label"></label>
+                <input asp-for="Descripcion" class="form-control" />
+                <span asp-validation-for="Descripcion" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="TipoMaquina" class="control-label"></label>
+                <select asp-for="TipoMaquina" class="form-control" asp-items="@(new SelectList(new[] { "Shindaiwa",
+                "Corta setos", "Motosierra", "Rastrillo", "Carretillo", "Otro" }))"></select>
+                <span asp-validation-for="TipoMaquina" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="HorasActuales" class="control-label"></label>
+                <input asp-for="HorasActuales" class="form-control" />
+                <span asp-validation-for="HorasActuales" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="HorasMaximas" class="control-label"></label>
+                <input asp-for="HorasMaximas" class="form-control" />
+                <span asp-validation-for="HorasMaximas" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="HorasMantenimiento" class="control-label"></label>
+                <input asp-for="HorasMantenimiento" class="form-control" />
+                <span asp-validation-for="HorasMantenimiento" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Guardar" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Regresar a la lista</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

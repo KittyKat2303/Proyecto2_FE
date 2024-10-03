@@ -8,8 +8,15 @@ namespace Proyecto1_KatherineMurillo.Controllers
     {
         public static IList<Empleados> listaEmpleados = new List<Empleados>();
         // GET: RegistroEmpleados
-        public ActionResult Index()
-        {          
+        public ActionResult Index(string buscarCedula)
+        {           
+            if (!string.IsNullOrEmpty(buscarCedula))
+            {               
+                var empleadosFiltrados = listaEmpleados
+                    .Where(e => e.Cedula.ToString() == buscarCedula)
+                    .ToList();
+                return View(empleadosFiltrados);
+            }            
             return View(listaEmpleados);
         }       
 
