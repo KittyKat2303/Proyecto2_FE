@@ -4,11 +4,20 @@
     ViewData["Title"] = "Index";
 }
 
-<h1>Listado Resgistro Clientes</h1>
+<h1>Listado Registro Clientes</h1>
 
 <p>
     <a asp-action="Create" asp-controller="RegistroClientes">Crear Nuevo</a>
 </p>
+
+<form asp-action="Index" method="get" class="form-inline mb-3">
+    <div class="form-group">
+        <label for="buscarIdentificacion" class="mr-2" style="font-size: 1.1em;">Buscar Empleado:</label>
+        <input type="text" id="buscarIdentificacion" name="buscarIdentificacion" class="form-control" placeholder="Ingrese el número de identificación" />
+    </div>
+    <button type="submit" class="btn btn-primary ml-2">Buscar</button>
+</form>
+
 <table class="table table-hover">
     <thead class="thead-dark">
         <tr>
@@ -67,9 +76,8 @@
                 @Html.DisplayFor(modelItem => item.MantenimientoVerano)
             </td>
             <td>
-                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+                @Html.ActionLink("Edit", "Edit", new { id=item.Identificacion }) |
+                @Html.ActionLink("Delete", "Delete", new { id=item.Identificacion })
             </td>
         </tr>
 }
