@@ -4,6 +4,13 @@
     ViewData["Title"] = "Index";
 }
 
+
+<h1>Lista Registro Inventario</h1>
+
+<p>
+    <a asp-action="Create">Crear Nuevo</a>
+</p>
+
 <form asp-action="Index" method="get" class="form-inline mb-3">
     <div class="form-group">
         <label for="buscarIdInventario" class="mr-2" style="font-size: 1.1em;">Buscar inventario:</label>
@@ -12,38 +19,33 @@
     <button type="submit" class="btn btn-primary ml-2">Buscar</button>
 </form>
 
-<h1>Lista de inventario</h1>
-
-<p>
-    <a asp-action="Create">Crear nuevo inventario</a>
-</p>
-<table class="table">
-    <thead>
+<table class="table table-hover">
+    <thead class="thead-dark">
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.IdInventario)
+                ID
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Descripcion)
+                Descripción
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.TipoMaquina)
+                Tipo Máquina
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.HorasActuales)
+                Horas Actuales
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.HorasMaximas)
+                Horas Maximas
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.HorasMantenimiento)
+                Horas Mantenimiento
             </th>
             <th></th>
         </tr>
     </thead>
     <tbody>
 @foreach (var item in Model) {
-        <tr>
+        <tr class="table-secondary">
             <td>
                 @Html.DisplayFor(modelItem => item.IdInventario)
             </td>

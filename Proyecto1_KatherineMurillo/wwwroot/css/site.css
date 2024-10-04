@@ -22,18 +22,33 @@ html {
 }
 
 body {
-    margin-bottom: 60px;
+    /*margin-bottom: 60px;*/
+    background-image: url('../recursos/images/lawn grass mowing cartoon.jpg');
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: 100% 100%;
 }
 
-.layout-background {
+.content-container {
+    background-color: rgba(255, 255, 255, 0.9); /* Fondo blanco con opacidad */
+    /* padding-block: auto;*/
+    padding: 25px;
+    max-width: 1500px;
+    width: auto;
+    border-radius: 25px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    overflow: hidden; /* Evitar desbordamiento */
+}
+
+
+/*.layout-background {
     background-color: #B2FF59;
     min-height: 100vh;
 }
 
 .navbar-custom {
     background-color: #00FFFF;
-}
-
+}*/
 
 
 

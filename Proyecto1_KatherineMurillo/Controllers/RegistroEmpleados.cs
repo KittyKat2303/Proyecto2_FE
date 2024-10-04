@@ -6,7 +6,9 @@ namespace Proyecto1_KatherineMurillo.Controllers
 {
     public class RegistroEmpleados : Controller
     {
-        public static IList<Empleados> listaEmpleados = new List<Empleados>();
+
+        private static IList<Empleados> listaEmpleados = new List<Empleados>();
+
         // GET: RegistroEmpleados
         public ActionResult Index(string buscarCedula)
         {           
@@ -50,7 +52,7 @@ namespace Proyecto1_KatherineMurillo.Controllers
         }
 
         // GET: RegistroEmpleados/Edit/5
-        public ActionResult Edit(int id)
+        public ActionResult Edit(int id) //AbrirEditarEmpleado puedes ponerle ese nombre
         {
             if (listaEmpleados.Any())
             {
@@ -63,7 +65,7 @@ namespace Proyecto1_KatherineMurillo.Controllers
         // POST: RegistroEmpleados/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(Empleados empleadoEditado)
+        public ActionResult Edit(Empleados empleadoEditado) //EditEmpleado puedes ponerle ese nombre
         {
             try
             {
