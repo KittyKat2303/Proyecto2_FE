@@ -1,0 +1,77 @@
+﻿@model IEnumerable<Proyecto1_KatherineMurillo.Models.Clientes>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Listado Resgistro Clientes</h1>
+
+<p>
+    <a asp-action="Create" asp-controller="RegistroClientes">Crear Nuevo</a>
+</p>
+<table class="table table-hover">
+    <thead class="toast-header">
+        <tr>
+            <th>
+                Identificación
+            </th>
+            <th>
+                Nombre Completo
+            </th>
+            <th>
+                Provincia
+            </th>
+            <th>
+                Cantón
+            </th>
+            <th>
+                Distrito
+            </th>
+            <th>
+                Dirección Exacta
+            </th>
+            <th>
+                Mantenimiento Invierno
+            </th>
+            <th>
+                Mantenimiento Verano
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Identificacion)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NombreCompleto)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Provincia)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Canton)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Distrito)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DireccionExacta)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MantenimientoInvierno)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MantenimientoVerano)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
