@@ -6,6 +6,7 @@ namespace Proyecto1_KatherineMurillo.Controllers
 {
     public class RegistroMantenimiento : Controller
     {
+        public static IList<Mantenimiento> listaMantenimiento = new List<Mantenimiento>();
         // GET: RegistroMantenimiento
         public ActionResult Index()
         {
