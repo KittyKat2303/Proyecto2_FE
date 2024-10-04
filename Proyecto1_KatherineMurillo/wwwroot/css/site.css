@@ -23,10 +23,10 @@ html {
 
 body {
     /*margin-bottom: 60px;*/
-    background-image: url('../Recursos/Images/lawn grass mowing cartoon.jpg');
+    background-image: url('../recursos/images/lawn grass mowing cartoon.jpg');
     background-repeat: no-repeat;
     background-attachment: fixed;
-    background-size: cover;
+    background-size: 100% 100%;
 }
 
 .content-container {
