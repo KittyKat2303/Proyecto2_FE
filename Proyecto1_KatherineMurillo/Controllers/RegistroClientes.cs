@@ -52,7 +52,7 @@ namespace Proyecto1_KatherineMurillo.Controllers
         }
 
         // GET: RegistroClientes/Edit/5
-        public ActionResult Edit(int id)
+        public ActionResult AbrirEdit(int id)
         {
             if (listaClientes.Any())
             {
@@ -65,7 +65,7 @@ namespace Proyecto1_KatherineMurillo.Controllers
         // POST: RegistroClientes/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(Clientes clienteEditado)
+        public ActionResult EditCliente(Clientes clienteEditado)
         {
             try
             {
