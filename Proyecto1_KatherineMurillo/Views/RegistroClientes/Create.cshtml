@@ -59,7 +59,7 @@
             </div>
             <div class="form-group">
                 <label class="control-label">Seleccione el mantenimiento en verano:</label>
-               <select asp-for="MantenimientoInvierno" class="form-control" asp-items="@(new SelectList(new[] { 15, 30 }))"></select>
+                <select asp-for="MantenimientoVerano" class="form-control" asp-items="@(new SelectList(new[] { 15, 30 }))"></select>
                 <span asp-validation-for="MantenimientoVerano" class="text-danger"></span>
             </div>
             <div class="form-group">
