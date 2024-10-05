@@ -29,7 +29,9 @@ namespace Proyecto1_KatherineMurillo.Controllers
         // POST: RegistroClientes/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(Clientes clienteNuevo)
+
+        public ActionResult CreateNuevo(Clientes clienteNuevo)
+
         {
             try
             {
