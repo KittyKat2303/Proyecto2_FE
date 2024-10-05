@@ -7,6 +7,7 @@ namespace Proyecto1_KatherineMurillo.Controllers
     public class RegistroClientes : Controller
     {
         public static IList<Clientes> listaClientes = new List<Clientes>();
+
         // GET: RegistroClientes
         public ActionResult Index(string buscarIdentificacion)
         {
@@ -34,7 +35,7 @@ namespace Proyecto1_KatherineMurillo.Controllers
             try
             {
                 if (clienteNuevo == null)
-                {
+                {                   
                     return View();
                 }
                 else

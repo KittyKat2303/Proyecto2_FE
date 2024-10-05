@@ -4,7 +4,9 @@
     ViewData["Title"] = "Edit";
 }
 
-<h1>Editar inventario</h1>
+<h1 style="color:darkcyan">Registros</h1>
+
+<h4 style="color:darkcyan">Editar Inventario</h4>
 
 <hr />
 <div class="row">
@@ -50,9 +52,10 @@
 </div>
 
 <div>
-    <a asp-action="Index">Regresar a la lista</a>
+    <a asp-action="Index">Regresar al listado</a>
 </div>
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    <script src="~/js/textoinventarioeditar.js"></script>
 }
