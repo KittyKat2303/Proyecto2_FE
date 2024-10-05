@@ -9,6 +9,8 @@ namespace Proyecto1_KatherineMurillo.Models
         public int IdMantenimiento { get; set; }
         [Required(ErrorMessage = "La fecha de ejecutado es requerida")]
         [Display(Name = "Fecha de ejecutado")]
+        public int id_Cliente { get; set; }
+
         public DateTime FechaEjecutado { get; set; }
         [Required(ErrorMessage = "La fecha de agendado es requerida")]
         [Display(Name = "Fecha de agendado")]
