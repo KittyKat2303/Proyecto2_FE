@@ -11,7 +11,7 @@
 <hr />
 <div class="row">
     <div class="col-md-4">
-        <form asp-action="Create">
+        <form asp-action="CreateNuevo" asp-controller="RegistroClientes" method="post">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
                 <label class="control-label">Digite la identificación:</label>
@@ -43,9 +43,8 @@
                 <span asp-validation-for="Canton" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label class="control-label">Seleccione el distrito:</label>
-                <select asp-for="Distrito" class="form-control" asp-items="@(new SelectList(new[] { "Shindaiwa",
-                "Corta setos", "Motosierra", "Rastrillo", "Carretillo", "Otro" }))"></select>
+                <label class="control-label">Digite el distrito:</label>
+                <input asp-for="Distrito" class="form-control" />
                 <span asp-validation-for="Distrito" class="text-danger"></span>
             </div>
             <div class="form-group">
@@ -64,7 +63,7 @@
                 <span asp-validation-for="MantenimientoVerano" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <input type="submit" value="Crear" class="btn btn-primary" />
+                <input type="submit" value="Crear" class="btn btn-success" />
             </div>
         </form>
     </div>
@@ -138,7 +137,7 @@
 
         document.getElementById("direccionExacta").addEventListener("keypress", function (e) {
             var char = String.fromCharCode(e.which);
-            var regex = /^[a-zA-Z\s]*$/; // Solo letras y espacios
+            var regex = /^[0-9a-zA-Z\s]*$/; // Solo letras y espacios
             if (!regex.test(char)) {
                 e.preventDefault(); // Bloquear cualquier carácter que no sea permitido
             }
