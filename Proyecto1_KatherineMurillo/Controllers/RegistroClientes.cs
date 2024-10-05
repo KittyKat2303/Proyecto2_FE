@@ -93,7 +93,7 @@ namespace Proyecto1_KatherineMurillo.Controllers
         }
 
         // GET: RegistroClientes/Delete/5
-        public ActionResult Delete(int id)
+        public ActionResult AbrirDelete(int id)
         {
             Clientes clienteEliminar = listaClientes.FirstOrDefault(cliente => cliente.Identificacion == id);
 
@@ -108,7 +108,7 @@ namespace Proyecto1_KatherineMurillo.Controllers
         // POST: RegistroClientes/Delete/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Delete(Clientes clienteEliminado)
+        public ActionResult DeleteCliente(Clientes clienteEliminado)
         {
             try
             {
