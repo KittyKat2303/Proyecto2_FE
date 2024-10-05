@@ -66,6 +66,7 @@ namespace Proyecto1_KatherineMurillo.Controllers
                     if (mantenimientoedit != null)
                     {
                         mantenimientoedit.IdMantenimiento = obj_mantenimientoedit.IdMantenimiento;
+                        mantenimientoedit.id_Cliente = obj_mantenimientoedit.id_Cliente;
                         mantenimientoedit.FechaEjecutado = obj_mantenimientoedit.FechaEjecutado;
                         mantenimientoedit.FechaAgendado = obj_mantenimientoedit.FechaAgendado;
                         mantenimientoedit.MetrosPropiedad = obj_mantenimientoedit.MetrosPropiedad;
