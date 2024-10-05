@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Proyecto1_KatherineMurillo.Models;
+using System.Drawing;
 
 namespace Proyecto1_KatherineMurillo.Controllers
 {
@@ -8,9 +9,16 @@ namespace Proyecto1_KatherineMurillo.Controllers
     {
         public static IList<Mantenimiento> listaMantenimiento = new List<Mantenimiento>();
         // GET: RegistroMantenimiento
-        public ActionResult Index()
+        public ActionResult Index(string buscarmantenimiento)
         {
-            return View();
+            if (!string.IsNullOrEmpty(buscarmantenimiento))
+            {
+                var mantenimientoFiltrado = listaMantenimiento
+                    .Where(e => e.IdMantenimiento.ToString() == buscarmantenimiento)
+                    .ToList();
+                return View(mantenimientoFiltrado);
+            }
+            return View(listaMantenimiento);
         }
 
         // GET: RegistroMantenimiento/Create
