@@ -22,7 +22,7 @@ namespace Proyecto1_KatherineMurillo.Controllers
         // POST: RegistroClientes/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection)
+        public ActionResult CreateNuevo(IFormCollection collection)
         {
             try
             {
