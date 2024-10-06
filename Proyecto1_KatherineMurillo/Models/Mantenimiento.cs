@@ -5,10 +5,12 @@ namespace Proyecto1_KatherineMurillo.Models
     public class Mantenimiento
     {
         [Required(ErrorMessage = "El id del mamtenimiento es requerido")]
-        [Display(Name = "Id del mantenimiento")]
+        //[Display(Name = "Id del mantenimiento")]
         public int IdMantenimiento { get; set; }
         [Required(ErrorMessage = "La fecha de ejecutado es requerida")]
         [Display(Name = "Fecha de ejecutado")]
+        public int id_Cliente { get; set; }
+
         public DateTime FechaEjecutado { get; set; }
         [Required(ErrorMessage = "La fecha de agendado es requerida")]
         [Display(Name = "Fecha de agendado")]

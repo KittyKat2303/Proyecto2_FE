@@ -30,7 +30,9 @@ namespace Proyecto1_KatherineMurillo.Controllers
         // POST: RegistroClientes/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(Clientes clienteNuevo)
+
+        public ActionResult CreateNuevo(Clientes clienteNuevo)
+
         {
             try
             {
@@ -51,7 +53,7 @@ namespace Proyecto1_KatherineMurillo.Controllers
         }
 
         // GET: RegistroClientes/Edit/5
-        public ActionResult Edit(int id)
+        public ActionResult AbrirEdit(int id)
         {
             if (listaClientes.Any())
             {
@@ -64,7 +66,7 @@ namespace Proyecto1_KatherineMurillo.Controllers
         // POST: RegistroClientes/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(Clientes clienteEditado)
+        public ActionResult EditCliente(Clientes clienteEditado)
         {
             try
             {
@@ -92,7 +94,7 @@ namespace Proyecto1_KatherineMurillo.Controllers
         }
 
         // GET: RegistroClientes/Delete/5
-        public ActionResult Delete(int id)
+        public ActionResult AbrirDelete(int id)
         {
             Clientes clienteEliminar = listaClientes.FirstOrDefault(cliente => cliente.Identificacion == id);
 
@@ -107,7 +109,7 @@ namespace Proyecto1_KatherineMurillo.Controllers
         // POST: RegistroClientes/Delete/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Delete(Clientes clienteEliminado)
+        public ActionResult DeleteCliente(Clientes clienteEliminado)
         {
             try
             {
