@@ -22,7 +22,8 @@ function mostrarDiasSinChapia() {
     let diasSinChapia = calcularDiasSinChapia(fechaEjecucion);
 
     // Mostrar el resultado
-    document.getElementById('resultado').innerText = `Cantidad de días sin chapia: ${diasSinChapia}`;
+   // document.getElementById('resultado').innerText = `Cantidad de días sin chapia: ${diasSinChapia}`;
+    document.getElementById('resultado').value = `Cantidad de días sin chapia: ${diasSinChapia}`;
 }
 
  /*<h1>Calcular Días Sin Chapia</h1>
