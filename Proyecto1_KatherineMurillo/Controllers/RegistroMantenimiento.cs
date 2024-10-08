@@ -9,12 +9,12 @@ namespace Proyecto1_KatherineMurillo.Controllers
     {
         public static IList<Mantenimiento> listaMantenimiento = new List<Mantenimiento>();
         // GET: RegistroMantenimiento
-        public ActionResult Index(string buscarmantenimiento)
+        public ActionResult Index(string buscarMantenimiento)
         {
-            if (!string.IsNullOrEmpty(buscarmantenimiento))
+            if (!string.IsNullOrEmpty(buscarMantenimiento))
             {
                 var mantenimientoFiltrado = listaMantenimiento
-                    .Where(e => e.IdMantenimiento.ToString() == buscarmantenimiento)
+                    .Where(e => e.IdMantenimiento.ToString() == buscarMantenimiento)
                     .ToList();
                 return View(mantenimientoFiltrado);
             }
@@ -74,7 +74,7 @@ namespace Proyecto1_KatherineMurillo.Controllers
                     if (mantenimientoedit != null)
                     {
                         mantenimientoedit.IdMantenimiento = obj_mantenimientoedit.IdMantenimiento;
-                        mantenimientoedit.id_Cliente = obj_mantenimientoedit.id_Cliente;
+                        mantenimientoedit.IdCliente = obj_mantenimientoedit.IdCliente;
                         mantenimientoedit.FechaEjecutado = obj_mantenimientoedit.FechaEjecutado;
                         mantenimientoedit.FechaAgendado = obj_mantenimientoedit.FechaAgendado;
                         mantenimientoedit.MetrosPropiedad = obj_mantenimientoedit.MetrosPropiedad;

@@ -31,17 +31,17 @@
             </div>
             <div class="form-group">
                 <label asp-for="HorasActuales" class="control-label"></label>
-                <input asp-for="HorasActuales" class="form-control" />
+                <input asp-for="HorasActuales" class="form-control" inputmode="decimal" />
                 <span asp-validation-for="HorasActuales" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="HorasMaximas" class="control-label"></label>
-                <input asp-for="HorasMaximas" class="form-control" />
+                <input asp-for="HorasMaximas" class="form-control" inputmode="decimal" />
                 <span asp-validation-for="HorasMaximas" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="HorasMantenimiento" class="control-label"></label>
-                <input asp-for="HorasMantenimiento" class="form-control" />
+                <input asp-for="HorasMantenimiento" class="form-control" inputmode="decimal" />
                 <span asp-validation-for="HorasMantenimiento" class="text-danger"></span>
             </div>
             <div class="form-group">
@@ -57,5 +57,5 @@
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
-    <script src="~/js/textoinventarioeditar.js"></script>
+    <script src="~/js/validacionesinventario.js"></script>
 }

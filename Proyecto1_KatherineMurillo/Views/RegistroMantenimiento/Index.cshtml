@@ -34,10 +34,10 @@
                 Fecha Agendado
             </th>
             <th>
-                Metros Propiedad m2
+                Metros Propiedad 
             </th>
             <th>
-                Metros Cerca Viva m2
+                Metros Cerca Viva 
             </th>
             <th>
                 Dias Sin Chapia
@@ -73,7 +73,7 @@
                 @Html.DisplayFor(modelItem => item.IdMantenimiento)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.id_Cliente)
+                @Html.DisplayFor(modelItem => item.IdCliente)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.FechaEjecutado)
@@ -112,9 +112,8 @@
                 @Html.DisplayFor(modelItem => item.EstadoMantenimiento)
             </td>
             <td>
-                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+                @Html.ActionLink("Edit", "Edit", new {  id=item.IdMantenimiento}) |
+                @Html.ActionLink("Delete", "Delete", new {  id=item.IdMantenimiento })
             </td>
         </tr>
 }
