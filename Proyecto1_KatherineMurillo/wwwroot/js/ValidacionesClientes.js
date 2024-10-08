@@ -1,4 +1,17 @@
-﻿//Objeto que contiene las provincias y sus respectivos cantones
+﻿// Validación de campo de la identificación del cliente (solo números enteros)
+document.getElementById("Identificacion").addEventListener("input", function (e) {
+    this.value = this.value.replace(/\D/g, ''); // Elimina todo lo que no sea dígito
+});
+
+document.getElementById("nombreCompleto").addEventListener("keypress", function (e) {
+    var char = String.fromCharCode(e.which);
+    var regex = /^[a-zA-Z\s]*$/; // Solo letras y espacios
+    if (!regex.test(char)) {
+        e.preventDefault(); // Bloquear cualquier carácter que no sea permitido
+    }
+});
+
+//Objeto que contiene las provincias y sus respectivos cantones
 const cantonesPorProvincia = {
     "San José": ["San José", "Escazú", "Desamparados", "Puriscal", "Tarrazú", "Aserrí", "Mora", "Goicoechea",
         "Santa Ana", "Alajuelita", "Vázquez de Coronado", "Acosta", "Tibás", "Moravia", "Montes de Oca", "Curridabat",
@@ -332,19 +345,19 @@ window.onload = function () {
     cargarCantones(); // Carga los cantones de la provincia por defecto (San José)
 };
 
-document.getElementById("nombreCompleto").addEventListener("keypress", function (e) {
-    var char = String.fromCharCode(e.which);
-    var regex = /^[a-zA-Z\s]*$/; // Solo letras y espacios
-    if (!regex.test(char)) {
-        e.preventDefault(); // Bloquear cualquier carácter que no sea permitido
-    }
-});
+/*Función para almacenar el ID del cliente entre vistas
+document.addEventListener("DOMContentLoaded", function () {
+    const identificacionElemento = document.getElementById("identificacionCliente");
+    console.log(identificacionElemento); // Verifica que el elemento no sea nulo
 
-document.getElementById("direccionExacta").addEventListener("keypress", function (e) {
-    var char = String.fromCharCode(e.which);
-    var regex = /^[a-zA-Z\s]*$/; // Solo letras y espacios
-    if (!regex.test(char)) {
-        e.preventDefault(); // Bloquear cualquier carácter que no sea permitido
-    }
-});
+    // Escuchar el evento submit del formulario
+    document.querySelector("form").addEventListener("submit", function () {
+        // Obtener el valor de la identificación del cliente
+        const identificacionCliente = identificacionElemento.value;
 
+        // Guardar el valor en localStorage
+        if (identificacionCliente) {
+            localStorage.setItem("clienteId", identificacionCliente);
+        }
+    });
+});*/

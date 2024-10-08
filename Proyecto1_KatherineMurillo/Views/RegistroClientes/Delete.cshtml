@@ -62,10 +62,9 @@
         </dd>
     </dl>
     
-    <form asp-action="Delete" method="post">
+    <form asp-action="DeleteCliente" method="post">
         @Html.HiddenFor(model => model.Identificacion)
         <input type="submit" value="Eliminar" class="btn btn-danger" /> |
         <a asp-action="Index" class="btn btn-secondary">Cancelar</a>
     </form>
-
 </div>

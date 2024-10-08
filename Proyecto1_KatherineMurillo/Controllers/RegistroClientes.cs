@@ -32,7 +32,6 @@ namespace Proyecto1_KatherineMurillo.Controllers
         [ValidateAntiForgeryToken]
 
         public ActionResult CreateNuevo(Clientes clienteNuevo)
-
         {
             try
             {
@@ -53,7 +52,7 @@ namespace Proyecto1_KatherineMurillo.Controllers
         }
 
         // GET: RegistroClientes/Edit/5
-        public ActionResult AbrirEdit(int id)
+        public ActionResult Edit(int id)
         {
             if (listaClientes.Any())
             {
@@ -94,7 +93,7 @@ namespace Proyecto1_KatherineMurillo.Controllers
         }
 
         // GET: RegistroClientes/Delete/5
-        public ActionResult AbrirDelete(int id)
+        public ActionResult Delete(int id)
         {
             Clientes clienteEliminar = listaClientes.FirstOrDefault(cliente => cliente.Identificacion == id);
 

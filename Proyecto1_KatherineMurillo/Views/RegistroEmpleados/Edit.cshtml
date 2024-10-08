@@ -14,28 +14,28 @@
         <form asp-action="Edit">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
-                <label asp-for="Cedula" class="control-label"></label>
+                <label class="control-label">Digite la cédula:</label>
                 <input asp-for="Cedula" class="form-control" readonly />
                 <span asp-validation-for="Cedula" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="FechaNacimiento" class="control-label"></label>
+                <label class="control-label">Selecciona la fecha de nacimiento:</label>
                 <input asp-for="FechaNacimiento" class="form-control" type="date" />
                 <span asp-validation-for="FechaNacimiento" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Lateralidad" class="control-label"></label>
+                <label class="control-label">Selecciona la lateralidad:</label>
                 <select asp-for="Lateralidad" class="form-control" asp-items="@(new SelectList(new[] { "Diestro", "Zurdo" }))"></select>
                 <span asp-validation-for="Lateralidad" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="FechaIngreso" class="control-label"></label>
+                <label class="control-label">Selecciona la fecha de ingreso:</label>
                 <input asp-for="FechaIngreso" class="form-control" type="date" />
                 <span asp-validation-for="FechaIngreso" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="SalarioHora" class="control-label"></label>
-                <input asp-for="SalarioHora" class="form-control" />
+                <label class="control-label">Digite el salario por hora:</label>
+                <input asp-for="SalarioHora" type="text" class="form-control" inputmode="decimal" />
                 <span asp-validation-for="SalarioHora" class="text-danger"></span>
             </div>
             <div class="form-group">
@@ -51,4 +51,5 @@
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    <script src="~/js/validacionesempleados.js"></script>
 }
