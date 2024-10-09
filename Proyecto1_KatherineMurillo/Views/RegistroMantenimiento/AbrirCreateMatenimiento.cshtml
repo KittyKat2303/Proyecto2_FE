@@ -51,7 +51,7 @@
                 <span asp-validation-for="DiasSinChapia" class="text-danger"></span>
             </div>
             <div class="form-group">
-                    <label class="control-label">SePróxima chapia: <span id="manten"></span></label>
+                    <label class="control-label">Próxima chapia: <span id="manten"></span></label>
                     @* <label id="manten"></label> *@
                     <button onmousemove="mostrarProximaChapia()" class="btn-info fw-bold" disabled>calcular siguiente chapia</button>
                     <input asp-for="FechaOtraChapia" type="text" id="result" readonly="readonly" class="form-control" />
@@ -65,7 +65,7 @@
             </div>
             <div class="form-group">
                 <label class="control-label">Seleccione si se le ha aplicado algún producto:</label>
-                <select asp-for="ProductoAplicado" class="form-control" asp-items="@(new SelectList(new[] { "Sí", "No" }))"></select>
+                    <select asp-for="AplicacionProducto" class="form-control" asp-items="@(new SelectList(new[] { "Sí", "No" }))"></select>
                 <span asp-validation-for="AplicacionProducto" class="text-danger"></span>
             </div>
             <div class="form-group">

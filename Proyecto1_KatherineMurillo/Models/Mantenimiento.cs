@@ -23,10 +23,10 @@ namespace Proyecto1_KatherineMurillo.Models
         public float MetrosCercaViva { get; set; }
         [Required(ErrorMessage = "La cantidad de días sin chapia es requerida")]
         //[Display(Name = "Cantidad de días sin chapia")]
-        public int DiasSinChapia { get; set; }
+        public string DiasSinChapia { get; set; }
         [Required(ErrorMessage = "La fecha aproximada de la siguiente chapia es requerida")]
         //[Display(Name = "Fecha aproximada de la siguiente chapia")]
-        public DateTime FechaOtraChapia { get; set; }
+        public string FechaOtraChapia { get; set; }
         [Required(ErrorMessage = "El tipo de zacate es requerido")]
         //[Display(Name = "Tipo de zacate")]
         public string TipoZacate { get; set; }
