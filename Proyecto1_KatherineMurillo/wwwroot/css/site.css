@@ -32,7 +32,7 @@ body {
 .content-container {
     background-color: rgba(255, 255, 255, 0.9); /* Fondo blanco con opacidad */
     /* padding-block: auto;*/
-    padding: 25px;
+    padding: 50px;
     max-width: 1500px;
     width: auto;
     border-radius: 25px;
