@@ -77,16 +77,28 @@ function mostrarDiasSinChapia() {
     document.getElementById('resultado').value = `Cantidad de días sin chapia: ${diasSinChapia}`;
 }
 
-/*
+// Al cargar la página, se establece el valor del campo PREFERENCIA
+document.addEventListener("DOMContentLoaded", function () {
+    // Recuperar el valor del cliente guardado en localStorage
+    const mainten = localStorage.getItem("mantenimiento");
+
+    // Establecer el valor en el campo IdCliente
+    if (mainten) {
+        document.getElementById("manten").value = mainten;
+    }
+});
+
 function calcularSiguienteChapia(fechaEjecutado, preferencia) {
     // Convertir la fecha de ejecutado a un objeto Date
     let fecha = new Date(fechaEjecutado);
 
+    //let preferencia = document.getElementById('manten').value;
+
     // Calcular el incremento en días según la preferencia del cliente
     let incrementoDias;
-    if (preferencia.toLowerCase() === 'quincenal') {
-        incrementoDias = 14; // 14 días para quincenal
-    } else if (preferencia.toLowerCase() === 'mensual') {
+    if (preferencia.toLowerCase() === '15') {
+        incrementoDias = 15; // 14 días para quincenal
+    } else if (preferencia.toLowerCase() === '30') {
         incrementoDias = 30; // 30 días para mensual
     } else {
         throw new Error('Preferencia no válida. Use "quincenal" o "mensual".');
@@ -96,13 +108,27 @@ function calcularSiguienteChapia(fechaEjecutado, preferencia) {
     fecha.setDate(fecha.getDate() + incrementoDias);
 
     // Formatear la fecha resultante en formato YYYY-MM-DD
-    let siguienteChapia = fecha.toISOString().split('T')[0];
-
+    //let siguienteChapia = fecha.toISOString().split('T')[0];
+    let siguienteChapia = fecha.toLocaleDateString();
     return siguienteChapia;
 }
 
+function mostrarProximaChapia() {
+    // Obtener el valor del input
+    let fechaEjecucion = document.getElementById('fechaEjecucion').value;
+
+    let preferencia = document.getElementById('manten').value;
+
+    // Calcular los días sin chapia
+    let proximaChapia = calcularSiguienteChapia(fechaEjecucion,preferencia);
+
+    // Mostrar el resultado
+    // document.getElementById('resultado').innerText = `Cantidad de días sin chapia: ${diasSinChapia}`;
+    document.getElementById('result').value = `Fecha próxima chapia: ${proximaChapia}`;
+}
+
 // Ejemplo de uso:
-let fechaEjecutado = '2024-10-08';
+/*let fechaEjecutado = '2024-10-08';
 let preferencia = 'quincenal';
 console.log(calcularSiguienteChapia(fechaEjecutado, preferencia)); // Salida: 2024-10-22
 */

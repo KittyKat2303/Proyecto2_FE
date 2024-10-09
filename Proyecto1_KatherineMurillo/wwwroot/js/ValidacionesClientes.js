@@ -365,24 +365,24 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 //FUNCION ALMACENA PREFERENCIA MANTENIMIENTO
-/* document.addEventListener("DOMContentLoaded", function () {
-            const identifyElemento = document.getElementById("identificacionCliente");
-            console.log(identifyElemento); // Verifica que el elemento no sea nulo
+ document.addEventListener("DOMContentLoaded", function () {
+            const identifyElement = document.getElementById("manteInvierno");
+            console.log(identifyElement); // Verifica que el elemento no sea nulo
 
             // Escuchar el evento submit del formulario
-            document.querySelector("form").addEventListener("submit", function (event) {
-                event.preventDefault(); // Prevenir el envío del formulario para pruebas
+            document.querySelector("form").addEventListener("submit", function () {
+                //event.preventDefault(); // Prevenir el envío del formulario para pruebas
 
                 // Obtener el valor de la identificación del cliente
-                const identifyCliente = identificacionElemento.value;
+                const identifyMante = identifyElement.value;
 
                 // Guardar el valor en localStorage
-                if (identifyCliente) {
-                    localStorage.setItem("clienteId", identifyCliente);
-                    alert("ID del cliente guardado: " + identifyCliente);
+                if (identifyMante) {
+                    localStorage.setItem("mantenimiento", identifyMante);
+                    //alert("ID del cliente guardado: " + identifyMante);
                 }
             });
-        });*/
+        });
 
 /*function capturarValor() {
     // Obtener el valor del campo de entrada
