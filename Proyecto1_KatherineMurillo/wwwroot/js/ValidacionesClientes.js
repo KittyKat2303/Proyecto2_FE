@@ -1,5 +1,5 @@
 ﻿// Validación de campo de la identificación del cliente (solo números enteros)
-document.getElementById("Identificacion").addEventListener("input", function (e) {
+/*document.getElementById("Identificacion").addEventListener("input", function (e) {
     this.value = this.value.replace(/\D/g, ''); // Elimina todo lo que no sea dígito
 });
 
@@ -9,7 +9,7 @@ document.getElementById("nombreCompleto").addEventListener("keypress", function 
     if (!regex.test(char)) {
         e.preventDefault(); // Bloquear cualquier carácter que no sea permitido
     }
-});
+});*/
 
 //Objeto que contiene las provincias y sus respectivos cantones
 const cantonesPorProvincia = {
@@ -286,6 +286,8 @@ const distritosPorCanton = {
     }
 };
 
+
+
 // Función para cargar cantones
 function cargarCantones() {
     const provinciaSeleccionada = document.getElementById('provincia').value;
@@ -345,7 +347,7 @@ window.onload = function () {
     cargarCantones(); // Carga los cantones de la provincia por defecto (San José)
 };
 
-/*Función para almacenar el ID del cliente entre vistas
+//Función para almacenar el ID del cliente entre vistas
 document.addEventListener("DOMContentLoaded", function () {
     const identificacionElemento = document.getElementById("identificacionCliente");
     console.log(identificacionElemento); // Verifica que el elemento no sea nulo
@@ -360,4 +362,38 @@ document.addEventListener("DOMContentLoaded", function () {
             localStorage.setItem("clienteId", identificacionCliente);
         }
     });
-});*/
+});
+
+//FUNCION ALMACENA PREFERENCIA MANTENIMIENTO
+ document.addEventListener("DOMContentLoaded", function () {
+            const identifyElement = document.getElementById("manteInvierno");
+            console.log(identifyElement); // Verifica que el elemento no sea nulo
+
+            // Escuchar el evento submit del formulario
+            document.querySelector("form").addEventListener("submit", function () {
+                //event.preventDefault(); // Prevenir el envío del formulario para pruebas
+
+                // Obtener el valor de la identificación del cliente
+                const identifyMante = identifyElement.value;
+
+                // Guardar el valor en localStorage
+                if (identifyMante) {
+                    localStorage.setItem("mantenimiento", identifyMante);
+                    //alert("ID del cliente guardado: " + identifyMante);
+                }
+            });
+        });
+
+/*function capturarValor() {
+    // Obtener el valor del campo de entrada
+    var inputElement = document.getElementById('inputCampo');
+    var valor = inputElement.value;
+
+    // Mostrar el valor en la otra vista
+    var valorCapturadoElement = document.getElementById('valorCapturado');
+    valorCapturadoElement.textContent = valor;
+
+    // Ocultar la primera vista y mostrar la segunda vista
+    document.getElementById('vista1').style.display = 'none';
+    document.getElementById('vista2').style.display = 'block';
+}*/ 
