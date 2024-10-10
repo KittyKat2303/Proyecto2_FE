@@ -1,7 +1,7 @@
-﻿// Validación de campo de la identificación del cliente (solo números enteros)
-/*document.getElementById("Identificacion").addEventListener("input", function (e) {
+﻿/*Validación de campo de la identificación del cliente (solo números enteros)
+document.getElementById("Identificacion").addEventListener("input", function (e) {
     this.value = this.value.replace(/\D/g, ''); // Elimina todo lo que no sea dígito
-});
+});*/
 
 document.getElementById("nombreCompleto").addEventListener("keypress", function (e) {
     var char = String.fromCharCode(e.which);
@@ -9,7 +9,7 @@ document.getElementById("nombreCompleto").addEventListener("keypress", function 
     if (!regex.test(char)) {
         e.preventDefault(); // Bloquear cualquier carácter que no sea permitido
     }
-});*/
+});
 
 //Objeto que contiene las provincias y sus respectivos cantones
 const cantonesPorProvincia = {
@@ -285,8 +285,6 @@ const distritosPorCanton = {
         ]
     }
 };
-
-
 
 // Función para cargar cantones
 function cargarCantones() {
