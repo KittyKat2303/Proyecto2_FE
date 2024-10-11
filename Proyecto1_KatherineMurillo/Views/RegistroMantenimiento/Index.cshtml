@@ -112,8 +112,8 @@
                 @Html.DisplayFor(modelItem => item.EstadoMantenimiento)
             </td>
             <td>
-                @Html.ActionLink("Edit", "Edit", new {  id=item.IdMantenimiento}) |
-                @Html.ActionLink("Delete", "Delete", new {  id=item.IdMantenimiento })
+                    @Html.ActionLink("Editar", "AbrirEditMantenimiento", new { id = item.IdMantenimiento }, new { @class = "btn btn-warning" }) |
+                    @Html.ActionLink("Eliminar", "AbrirDeleteMantenimiento", new { id = item.IdMantenimiento }, new { @class = "btn btn-danger" })
             </td>
         </tr>
 }
