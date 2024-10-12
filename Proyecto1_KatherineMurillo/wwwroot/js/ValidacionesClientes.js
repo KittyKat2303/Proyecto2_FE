@@ -11,6 +11,18 @@ document.getElementById("nombreCompleto").addEventListener("keypress", function 
     }
 });
 
+function soloNumeros(event) {
+    var code = (event.which) ? event.which : event.keyCode;
+    var alerta = document.getElementById('alerta');
+    if (code >= 48 && code <= 57) { // Números del 0 al 9
+        alerta.style.display = 'none';
+        return true;
+    } else {
+        alerta.style.display = 'inline';
+        return false;
+    }
+}
+
 //Objeto que contiene las provincias y sus respectivos cantones
 const cantonesPorProvincia = {
     "San José": ["San José", "Escazú", "Desamparados", "Puriscal", "Tarrazú", "Aserrí", "Mora", "Goicoechea",

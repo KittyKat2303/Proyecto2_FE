@@ -18,7 +18,8 @@
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                 <div class="form-group" > <!-- id="vista1" -->
                 <label class="control-label">Digite la identificación:</label>
-                    <input asp-for="Identificacion" id="identificacionCliente" inputmode="numeric" pattern="[0-9]*" class="form-control" /> <!-- id="inputCampo" -->
+                    <input asp-for="Identificacion" id="identificacionCliente" onkeypress="return soloNumeros(event)" class="form-control" /> <!-- id="inputCampo" -->
+                    <span id="alerta" style="color: red; display: none;">Solo se permiten números</span>
                     <!--<button onmousemove="capturarValor()" class="btn-info fw-bold" disabled>capturar Id</button>-->
                     <span asp-validation-for="Identificacion" class="text-danger"></span>
             </div>          
