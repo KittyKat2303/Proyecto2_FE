@@ -15,13 +15,18 @@
     <div class="col-md-4">
         <div class="content-container">
         <form asp-action="CreateNuevo" asp-controller="RegistroClientes" method="post">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group" > 
-            <label class="control-label">Digite la identificación:</label>
-                <input asp-for="Identificacion" id="identificacionCliente" inputmode="numeric" pattern="[0-9]*" class="form-control" /> <!-- id="inputCampo" -->
-                <!--<button onmousemove="capturarValor()" class="btn-info fw-bold" disabled>capturar Id</button>-->
+           <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+           <div class="form-group">
+                <label class="control-label">Digite la identificación:</label>
+                <input asp-for="Identificacion" id="identificacionCliente" onkeypress="return soloNumeros(event)" class="form-control" />
+                <span id="alerta" style="color: red; display: none;">Solo se permiten números</span>
                 <span asp-validation-for="Identificacion" class="text-danger"></span>
-            </div>          
+            </div>
+            <div class="form-group">
+                <label class="control-label">Digite la identificación:</label>
+                <input asp-for="Identificacion" id="identificacionCliente" inputmode="numeric" pattern="[0-9]*" class="form-control" />                   
+                <span asp-validation-for="Identificacion" class="text-danger"></span>
+            </div>    
             <div class="form-group" >
                 <label class="control-label">Digite el nombre completo:</label>
                 <input asp-for="NombreCompletoClientes" id="nombreCompleto" class="form-control" required />
