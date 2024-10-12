@@ -24,6 +24,9 @@
             <th>
                 Cedula
             </th>
+                <th>
+                    Nombre completo
+                </th>
             <th>
                 Fecha Nacimiento
             </th>
@@ -44,6 +47,9 @@
         <tr class="table-secondary">
             <td>
                 @Html.DisplayFor(modelItem => item.Cedula)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NombreCompletoEmpleados)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.FechaNacimiento)

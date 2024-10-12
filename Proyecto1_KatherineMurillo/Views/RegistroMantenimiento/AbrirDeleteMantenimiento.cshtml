@@ -4,11 +4,9 @@
     ViewData["Title"] = "AbrirDeleteMantenimiento";
 }
 
-<h1>Eliminar Mantenimiento</h1>
+<h1 style="color:darkcyan">Registros</h1>
 
-<h3>Desea eliminar permanentemente el registro?</h3>
-<div class="content-container">
-    
+<h4 style="color:darkcyan">Eliminar Mantenimiento</h4>
     <hr />
     <dl class="row">
         <dt class = "col-sm-2">
@@ -97,8 +95,9 @@
         </dd>
     </dl>
     
-    <form asp-action="DeleteMantenimiento">
-        <input type="submit" value="Delete" class="btn btn-danger" /> |
-        <a asp-action="Index">Regresar al Listado</a>
-    </form>
+<form asp-action="AbrirDeleteMantenimiento" method="post">
+    @Html.HiddenFor(model => model.IdMantenimiento)
+    <input type="submit" value="Eliminar" class="btn btn-danger" /> |
+    <a asp-action="Index" class="btn btn-secondary">Cancelar</a>
+</form>
 </div>

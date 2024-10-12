@@ -1,6 +1,14 @@
-﻿// Validación de campo de cédula (solo números enteros)
+﻿// Validación de campo del ID dek inventario (solo números enteros)
 document.getElementById("Cedula").addEventListener("input", function (e) {
     this.value = this.value.replace(/\D/g, ''); // Elimina todo lo que no sea dígito
+});
+
+document.getElementById("nombre").addEventListener("keypress", function (e) {
+    var char = String.fromCharCode(e.which);
+    var regex = /^[a-zA-Z\s]*$/; // Solo letras y espacios
+    if (!regex.test(char)) {
+        e.preventDefault(); // Bloquear cualquier carácter que no sea permitido
+    }
 });
 
 // Validación de campo de salario por hora (solo números decimales correctos)
