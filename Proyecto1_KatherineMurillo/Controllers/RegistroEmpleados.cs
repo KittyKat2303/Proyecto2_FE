@@ -1,21 +1,22 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Proyecto1_KatherineMurillo.Models;
+using System.Text.RegularExpressions;
 
 namespace Proyecto1_KatherineMurillo.Controllers
 {
     public class RegistroEmpleados : Controller
     {
-        public static IList<Empleados> listaEmpleados = new List<Empleados>();
+        public static IList<Empleados> listaEmpleados = new List<Empleados>(); //Lista para almacenar los empleados
 
         // GET: RegistroEmpleados
         public ActionResult Index(string buscarCedula)
         {           
-            if (!string.IsNullOrEmpty(buscarCedula))
-            {               
-                var empleadosFiltrados = listaEmpleados
-                    .Where(e => e.Cedula.ToString() == buscarCedula)
-                    .ToList();
+            if (!string.IsNullOrEmpty(buscarCedula)) //Verifica si no es nulo ni vacío
+            {   //Filtra la lista de empleados buscando coincidencias con el valor de la cédula            
+                var empleadosFiltrados = listaEmpleados 
+                    .Where(e => e.Cedula.ToString() == buscarCedula) //Convierte a string y se compara con la búsqueda
+                    .ToList(); //Convierte el resultado filtrado en una lista
                 return View(empleadosFiltrados);
             }            
             return View(listaEmpleados);
@@ -33,14 +34,27 @@ namespace Proyecto1_KatherineMurillo.Controllers
         public ActionResult Create(Empleados empleadoNuevo)
         {
             try
-            {
-                if (empleadoNuevo == null)
+            {  
+                if (empleadoNuevo == null) //Verifica si no es nulo 
                 {
                     return View();
                 }
                 else
                 {
-                    listaEmpleados.Add(empleadoNuevo);
+                    // Validar que la cédula se convierte a int
+                    int cedulaInt;
+                    if (!int.TryParse(empleadoNuevo.Cedula.ToString(), out cedulaInt))
+                    {
+                        ModelState.AddModelError("Cedula", "La cédula deben ser solo números"); // Agregar un error al modelo
+                        return View(empleadoNuevo); // Volver a la vista con el modelo
+                    }
+                    // Verificar si la cédula ya existe
+                    if (CedulaYaExiste(cedulaInt))
+                    {
+                        ModelState.AddModelError("Cedula", "La cédula ya está registrada."); // Agregar un error al modelo
+                        return View(empleadoNuevo); // Volver a la vista con el modelo
+                    }                    
+                    listaEmpleados.Add(empleadoNuevo); //Si no es nulo se agrega a la lista 
                 }
                 return RedirectToAction(nameof(Index));
             }
@@ -51,10 +65,10 @@ namespace Proyecto1_KatherineMurillo.Controllers
         }
 
         // GET: RegistroEmpleados/Edit/5
-        public ActionResult Edit(int id) //AbrirEditarEmpleado puedes ponerle ese nombre
+        public ActionResult Edit(int id) 
         {
-            if (listaEmpleados.Any())
-            {
+            if (listaEmpleados.Any()) //Verifica si la lista contiene algún elemento
+            {   //Busca el primero en la lista que coincida con el ID dado
                 Empleados empleadoEditar = listaEmpleados.FirstOrDefault(empleado => empleado.Cedula == id);
                 return View(empleadoEditar);
             }
@@ -64,15 +78,17 @@ namespace Proyecto1_KatherineMurillo.Controllers
         // POST: RegistroEmpleados/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(Empleados empleadoEditado) //EditEmpleado puedes ponerle ese nombre
+        public ActionResult Edit(Empleados empleadoEditado)
         {
             try
             {
-                if (listaEmpleados.Any())
-                {
+                if (listaEmpleados.Any()) //Verifica si la lista contiene algún elemento
+                {   //Busca el primero en la lista que coincida con lo editado
                     Empleados empleadoEditar = listaEmpleados.FirstOrDefault(empleado => empleado.Cedula == empleadoEditado.Cedula);
-                    if (empleadoEditar != null) {
+                    if (empleadoEditar != null) //Si se encuentra y no es nulo)
+                    {   //Actualiza los campos con los valores editados
                         empleadoEditar.Cedula = empleadoEditado.Cedula;
+                        empleadoEditar.NombreCompletoEmpleados = empleadoEditado.NombreCompletoEmpleados;
                         empleadoEditar.FechaNacimiento = empleadoEditado.FechaNacimiento;
                         empleadoEditar.Lateralidad = empleadoEditado.Lateralidad;
                         empleadoEditar.FechaIngreso = empleadoEditado.FechaIngreso;
@@ -89,14 +105,12 @@ namespace Proyecto1_KatherineMurillo.Controllers
 
         // GET: RegistroEmpleados/Delete/5
         public ActionResult Delete(int id)
-        {
+        {   //Busca el primero en la lista que coincida con el ID dado
             Empleados empleadoEliminar = listaEmpleados.FirstOrDefault(empleado => empleado.Cedula == id);
-
-            if (empleadoEliminar == null)
+            if (empleadoEliminar == null) //Verifica si no es nulo 
             {
                 return RedirectToAction(nameof(Index));
             }
-
             return View(empleadoEliminar); 
         }
 
@@ -106,12 +120,11 @@ namespace Proyecto1_KatherineMurillo.Controllers
         public ActionResult Delete(Empleados empleadoEliminado)
         {
             try
-            {
+            {   //Busca el primero en la lista que coincida con lo que se va a eliminar
                 Empleados empleadoEliminar = listaEmpleados.FirstOrDefault(empleado => empleado.Cedula == empleadoEliminado.Cedula);
-
-                if (empleadoEliminar != null)
+                if (empleadoEliminar != null) //Verifica si no es nulo 
                 {
-                    listaEmpleados.Remove(empleadoEliminar);
+                    listaEmpleados.Remove(empleadoEliminar); //Si se encontró lo elimina de la lista 
                 }
                 return RedirectToAction(nameof(Index));
             }
@@ -120,5 +133,12 @@ namespace Proyecto1_KatherineMurillo.Controllers
                 return View();
             }
         }
+
+        // Método privado para verificar si la cédula ya existe
+        private bool CedulaYaExiste(int cedula)
+        {
+            // Comprobar si la cédula ya está en la lista de empleados
+            return listaEmpleados.Any(e => e.Cedula == cedula);
+        }       
     }
 }

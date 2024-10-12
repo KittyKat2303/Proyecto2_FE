@@ -6,15 +6,15 @@ namespace Proyecto1_KatherineMurillo.Controllers
 {
     public class RegistroInventario : Controller
     {
-        public static IList<Inventario> listaInventario = new List<Inventario>();
+        public static IList<Inventario> listaInventario = new List<Inventario>(); //Lista para almacenar los inventarios
         // GET: RegistroInventario
         public ActionResult Index(string buscarIdInventario)
         {
-            if (!string.IsNullOrEmpty(buscarIdInventario))
-            {
+            if (!string.IsNullOrEmpty(buscarIdInventario)) //Verifica si no es nulo ni vacío
+            {   //Filtra la lista de empleados buscando coincidencias con el valor del ID del inventario
                 var inventarioFiltrado = listaInventario
-                    .Where(e => e.IdInventario.ToString() == buscarIdInventario)
-                    .ToList();
+                    .Where(e => e.IdInventario.ToString() == buscarIdInventario) //Convierte a string y se compara con la búsqueda
+                    .ToList(); //Convierte el resultado filtrado en una lista
                 return View(inventarioFiltrado);
             }
             return View(listaInventario);
@@ -32,14 +32,14 @@ namespace Proyecto1_KatherineMurillo.Controllers
         public ActionResult Create(Inventario inventarioNuevo)
         {
             try
-            {
-                if (inventarioNuevo == null)
+            {   
+                if (inventarioNuevo == null) //Verifica si no es nulo 
                 {
                     return View();
                 }
                 else
                 {
-                    listaInventario.Add(inventarioNuevo);
+                    listaInventario.Add(inventarioNuevo); //Si no es nulo se agrega a la lista
                 }
                 return RedirectToAction(nameof(Index));
             }
@@ -52,8 +52,8 @@ namespace Proyecto1_KatherineMurillo.Controllers
         // GET: RegistroInventario/Edit/5
         public ActionResult Edit(int id)
         {
-            if (listaInventario.Any())
-            {
+            if (listaInventario.Any()) //Verifica si la lista contiene algún elemento
+            {   //Busca el primero en la lista que coincida con el ID dado
                 Inventario inventarioEditar = listaInventario.FirstOrDefault(inventario => inventario.IdInventario == id);
                 return View(inventarioEditar);
             }
@@ -67,11 +67,11 @@ namespace Proyecto1_KatherineMurillo.Controllers
         {
             try
             {
-                if (listaInventario.Any())
-                {
+                if (listaInventario.Any()) //Verifica si la lista contiene algún elemento
+                {   //Busca el primero en la lista que coincida con lo editado
                     Inventario inventarioEditar = listaInventario.FirstOrDefault(inventario => inventario.IdInventario == inventarioEditado.IdInventario);
-                    if (inventarioEditar != null)
-                    {
+                    if (inventarioEditar != null) //Si se encuentra y no es nulo)
+                    {   //Actualiza los campos con los valores editados
                         inventarioEditar.IdInventario = inventarioEditado.IdInventario;
                         inventarioEditar.Descripcion = inventarioEditado.Descripcion;
                         inventarioEditar.TipoMaquina = inventarioEditado.TipoMaquina;
@@ -90,14 +90,13 @@ namespace Proyecto1_KatherineMurillo.Controllers
 
         // GET: RegistroInventario/Delete/5
         public ActionResult Delete(int id)
-        {
+        {   //Busca el primero en la lista que coincida con el ID dado
             Inventario inventarioEliminar = listaInventario.FirstOrDefault(inventario => inventario.IdInventario == id);
 
-            if ( inventarioEliminar == null)
+            if ( inventarioEliminar == null) //Verifica si no es nulo 
             {
                 return RedirectToAction(nameof(Index));
             }
-
             return View(inventarioEliminar);
         }
 
@@ -107,12 +106,11 @@ namespace Proyecto1_KatherineMurillo.Controllers
         public ActionResult Delete(Inventario inventarioEliminado)
         {
             try
-            {
+            {   //Busca el primero en la lista que coincida con lo que se va a eliminar
                 Inventario inventarioEliminar = listaInventario.FirstOrDefault(inventario => inventario.IdInventario == inventarioEliminado.IdInventario);
-
-                if (inventarioEliminar != null)
+                if (inventarioEliminar != null) //Verifica si no es nulo 
                 {
-                    listaInventario.Remove(inventarioEliminar);
+                    listaInventario.Remove(inventarioEliminar); //Si se encontró lo elimina de la lista 
                 }
                 return RedirectToAction(nameof(Index));
             }

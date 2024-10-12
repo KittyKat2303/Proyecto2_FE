@@ -19,18 +19,18 @@
                 <input asp-for="IdMantenimiento" class="form-control" inputmode="numeric" pattern="[0-9]*" />
                 <span id="idMantenimientoError" class="text-danger"></span>
             </div>
-                <div class="form-group" > <!-- id="vista2" -->
+                <div class="form-group" > 
                 <label class="control-label">ID del Cliente:</label>
-                <input asp-for="IdCliente" id="idClienteInput" class="form-control" readonly />  <!--  id="valorCapturado"-->
+                <input asp-for="IdCliente" id="idClienteInput" class="form-control" readonly />  
                 <span asp-validation-for="IdCliente" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label class="control-label">Seleccione Fecha Ejecutado:</label>
+                <label class="control-label">Seleccione la fecha de ejecutado:</label>
                 <input asp-for="FechaEjecutado" type="date" id="fechaEjecucion" class="form-control" />
                 <span asp-validation-for="FechaEjecutado" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label class="control-label">Seleccione Fecha Agendado:</label>
+                <label class="control-label">Seleccione la fecha de agendado:</label>
                 <input asp-for="FechaAgendado" type="date" class="form-control" />
                 <span asp-validation-for="FechaAgendado" class="text-danger"></span>
             </div>
@@ -51,11 +51,9 @@
                 <span asp-validation-for="DiasSinChapia" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label class="control-label">Próxima chapia: <span id="manten"></span></label>
-                @* <label id="manten"></label> *@
+                <label class="control-label">Fecha de la próxima chapia: <span id="manten"></span></label>               
                 <button onmousemove="mostrarProximaChapia()" class="btn-info fw-bold" disabled>calcular siguiente chapia</button>
                 <input asp-for="FechaOtraChapia" type="text" id="result" readonly="readonly" class="form-control" />
-                <!-- <input asp-for="FechaOtraChapia" type="date" class="form-control" /> -->
                 <span asp-validation-for="FechaOtraChapia" class="text-danger"></span>
             </div>
             <div class="form-group">
@@ -103,5 +101,5 @@
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
-    <script src="~/js/mantenimientos.js"></script>
+    <script src="~/js/mantenimientos.js"></script> <!-- Se llama al js con los métodos -->
 }

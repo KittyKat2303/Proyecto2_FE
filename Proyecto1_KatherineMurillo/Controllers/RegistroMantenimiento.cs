@@ -7,16 +7,16 @@ namespace Proyecto1_KatherineMurillo.Controllers
 {
     public class RegistroMantenimiento : Controller
     {
-        public static IList<Mantenimiento> listaMantenimiento = new List<Mantenimiento>();
+        public static IList<Mantenimiento> listaMantenimiento = new List<Mantenimiento>(); //Lista para almacenar los mantenimientos
         // GET: RegistroMantenimiento
         public ActionResult Index(string buscarMantenimiento)
         {
-            if (!string.IsNullOrEmpty(buscarMantenimiento))
-            {
+            if (!string.IsNullOrEmpty(buscarMantenimiento)) //Verifica si no es nulo ni vacío
+            {   //Filtra la lista de empleados buscando coincidencias con el valor del ID del mantenimiento
                 var mantenimientoFiltrado = listaMantenimiento
-                    .Where(e => e.IdMantenimiento.ToString() == buscarMantenimiento)
-                    .ToList();
-                return View(mantenimientoFiltrado);
+                    .Where(e => e.IdMantenimiento.ToString() == buscarMantenimiento) //Convierte a string y se compara con la búsqueda
+                    .ToList(); //Convierte el resultado filtrado en una lista
+                return View(mantenimientoFiltrado);  
             }
             return View(listaMantenimiento);
         }
@@ -33,14 +33,14 @@ namespace Proyecto1_KatherineMurillo.Controllers
         public ActionResult CreateMantenimiento(Mantenimiento obj_mantenimiento)
         {
             try
-            {
-                if (obj_mantenimiento == null)
+            {   
+                if (obj_mantenimiento == null) //Verifica si no es nulo 
                 {
                     return View();
                 }
                 else
                 {
-                    listaMantenimiento.Add(obj_mantenimiento);
+                    listaMantenimiento.Add(obj_mantenimiento); //Si no es nulo se agrega a la lista
                 }
                 return RedirectToAction(nameof(Index));
             }
@@ -53,8 +53,8 @@ namespace Proyecto1_KatherineMurillo.Controllers
         // GET: RegistroMantenimiento/Edit/5
         public ActionResult AbrirEditMantenimiento(int id)
         {
-            if (listaMantenimiento.Any())
-            {
+            if (listaMantenimiento.Any()) //Verifica si la lista contiene algún elemento
+            {   //Busca el primero en la lista que coincida con el ID dado
                 Mantenimiento mantenimientoedit = listaMantenimiento.FirstOrDefault(mantenimientoedit => mantenimientoedit.IdMantenimiento == id);
                 return View(mantenimientoedit);
             }
@@ -68,11 +68,11 @@ namespace Proyecto1_KatherineMurillo.Controllers
         {
             try
             {
-                if (listaMantenimiento.Any())
-                {
+                if (listaMantenimiento.Any()) //Verifica si la lista contiene algún elemento
+                {   //Busca el primero en la lista que coincida con lo editado
                     Mantenimiento mantenimientoedit = listaMantenimiento.FirstOrDefault(mantenimiento => mantenimiento.IdMantenimiento == obj_mantenimientoedit.IdMantenimiento);
-                    if (mantenimientoedit != null)
-                    {
+                    if (mantenimientoedit != null) //Si se encuentra y no es nulo)
+                    {   //Actualiza los campos con los valores editados
                         mantenimientoedit.IdMantenimiento = obj_mantenimientoedit.IdMantenimiento;
                         mantenimientoedit.IdCliente = obj_mantenimientoedit.IdCliente;
                         mantenimientoedit.FechaEjecutado = obj_mantenimientoedit.FechaEjecutado;
@@ -99,10 +99,10 @@ namespace Proyecto1_KatherineMurillo.Controllers
 
         // GET: RegistroMantenimiento/Delete/5
         public ActionResult AbrirDeleteMantenimiento(int id)
-        {
+        {   //Busca el primero en la lista que coincida con el ID dado
             Mantenimiento obj_mantenimiento = listaMantenimiento.FirstOrDefault(mantenimiento => mantenimiento.IdMantenimiento == id);
 
-            if (obj_mantenimiento == null)
+            if (obj_mantenimiento == null) //Verifica si no es nulo 
             {
                 return RedirectToAction(nameof(Index));
             }
@@ -115,12 +115,11 @@ namespace Proyecto1_KatherineMurillo.Controllers
         public ActionResult DeleteMantenimiento(Mantenimiento obj_mantenimiento)
         {
             try
-            {
+            {   //Busca el primero en la lista que coincida con lo que se va a eliminar
                 Mantenimiento obj_mantenimientodelete = listaMantenimiento.FirstOrDefault(mantenimiento => mantenimiento.IdMantenimiento == obj_mantenimiento.IdMantenimiento);
-
-                if (obj_mantenimientodelete != null)
+                if (obj_mantenimientodelete != null) //Verifica si no es nulo 
                 {
-                    listaMantenimiento.Remove(obj_mantenimientodelete);
+                    listaMantenimiento.Remove(obj_mantenimientodelete); //Si se encontró lo elimina de la lista 
                 }
                 return RedirectToAction(nameof(Index));
             }
