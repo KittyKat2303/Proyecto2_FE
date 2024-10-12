@@ -30,17 +30,30 @@ namespace Proyecto1_KatherineMurillo.Controllers
         // POST: RegistroMantenimiento/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult CreateMantenimiento(Mantenimiento obj_mantenimiento)
+        public ActionResult CreateMantenimiento(Mantenimiento mantenimientoNuevo)
         {
             try
             {   
-                if (obj_mantenimiento == null) //Verifica si no es nulo 
+                if (mantenimientoNuevo == null) //Verifica si no es nulo 
                 {
                     return View();
                 }
                 else
                 {
-                    listaMantenimiento.Add(obj_mantenimiento); //Si no es nulo se agrega a la lista
+                    //Valida que el ID del mantenimiento se convierte a int
+                    int mantenimientoInt;
+                    if (!int.TryParse(mantenimientoNuevo.IdMantenimiento.ToString(), out mantenimientoInt))
+                    {
+                        ModelState.AddModelError("IdMantenimiento", "El ID del mantenimiento deben ser solo números");
+                        return View(mantenimientoNuevo);
+                    }
+                    //Verifica el ID del mantenimiento ya existe
+                    if (MantenimientoYaExiste(mantenimientoInt))
+                    {
+                        ModelState.AddModelError("IdMantenimiento", "El ID del mantenimiento ya está registrado");
+                        return View(mantenimientoNuevo);
+                    }
+                    listaMantenimiento.Add(mantenimientoNuevo); //Si no es nulo se agrega a la lista
                 }
                 return RedirectToAction(nameof(Index));
             }
@@ -55,8 +68,8 @@ namespace Proyecto1_KatherineMurillo.Controllers
         {
             if (listaMantenimiento.Any()) //Verifica si la lista contiene algún elemento
             {   //Busca el primero en la lista que coincida con el ID dado
-                Mantenimiento mantenimientoedit = listaMantenimiento.FirstOrDefault(mantenimientoedit => mantenimientoedit.IdMantenimiento == id);
-                return View(mantenimientoedit);
+                Mantenimiento mantenimientoEditar = listaMantenimiento.FirstOrDefault(mantenimiento => mantenimiento.IdMantenimiento == id);
+                return View(mantenimientoEditar);
             }
             return View();
         }
@@ -64,29 +77,29 @@ namespace Proyecto1_KatherineMurillo.Controllers
         // POST: RegistroMantenimiento/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult EditMantenimiento(Mantenimiento obj_mantenimientoedit)
+        public ActionResult EditMantenimiento(Mantenimiento mantenimientoEditado)
         {
             try
             {
                 if (listaMantenimiento.Any()) //Verifica si la lista contiene algún elemento
                 {   //Busca el primero en la lista que coincida con lo editado
-                    Mantenimiento mantenimientoedit = listaMantenimiento.FirstOrDefault(mantenimiento => mantenimiento.IdMantenimiento == obj_mantenimientoedit.IdMantenimiento);
-                    if (mantenimientoedit != null) //Si se encuentra y no es nulo)
+                    Mantenimiento mantenimientoEditar = listaMantenimiento.FirstOrDefault(mantenimiento => mantenimiento.IdMantenimiento == mantenimientoEditado.IdMantenimiento);
+                    if (mantenimientoEditar != null) //Si se encuentra y no es nulo)
                     {   //Actualiza los campos con los valores editados
-                        mantenimientoedit.IdMantenimiento = obj_mantenimientoedit.IdMantenimiento;
-                        mantenimientoedit.IdCliente = obj_mantenimientoedit.IdCliente;
-                        mantenimientoedit.FechaEjecutado = obj_mantenimientoedit.FechaEjecutado;
-                        mantenimientoedit.FechaAgendado = obj_mantenimientoedit.FechaAgendado;
-                        mantenimientoedit.MetrosPropiedad = obj_mantenimientoedit.MetrosPropiedad;
-                        mantenimientoedit.MetrosCercaViva = obj_mantenimientoedit.MetrosCercaViva;
-                        mantenimientoedit.DiasSinChapia = obj_mantenimientoedit.DiasSinChapia;
-                        mantenimientoedit.FechaOtraChapia = obj_mantenimientoedit.FechaOtraChapia;
-                        mantenimientoedit.TipoZacate = obj_mantenimientoedit.TipoZacate;
-                        mantenimientoedit.AplicacionProducto = obj_mantenimientoedit.AplicacionProducto;
-                        mantenimientoedit.ProductoAplicado = obj_mantenimientoedit.ProductoAplicado;
-                        mantenimientoedit.CostoChapia = obj_mantenimientoedit.CostoChapia;
-                        mantenimientoedit.CostoAplicacionProducto = obj_mantenimientoedit.CostoAplicacionProducto;
-                        mantenimientoedit.EstadoMantenimiento = obj_mantenimientoedit.EstadoMantenimiento;
+                        mantenimientoEditar.IdMantenimiento = mantenimientoEditado.IdMantenimiento;
+                        mantenimientoEditar.IdCliente = mantenimientoEditado.IdCliente;
+                        mantenimientoEditar.FechaEjecutado = mantenimientoEditado.FechaEjecutado;
+                        mantenimientoEditar.FechaAgendado = mantenimientoEditado.FechaAgendado;
+                        mantenimientoEditar.MetrosPropiedad = mantenimientoEditado.MetrosPropiedad;
+                        mantenimientoEditar.MetrosCercaViva = mantenimientoEditado.MetrosCercaViva;
+                        mantenimientoEditar.DiasSinChapia = mantenimientoEditado.DiasSinChapia;
+                        mantenimientoEditar.FechaOtraChapia = mantenimientoEditado.FechaOtraChapia;
+                        mantenimientoEditar.TipoZacate = mantenimientoEditado.TipoZacate;
+                        mantenimientoEditar.AplicacionProducto = mantenimientoEditado.AplicacionProducto;
+                        mantenimientoEditar.ProductoAplicado = mantenimientoEditado.ProductoAplicado;
+                        mantenimientoEditar.CostoChapia = mantenimientoEditado.CostoChapia;
+                        mantenimientoEditar.CostoAplicacionProducto = mantenimientoEditado.CostoAplicacionProducto;
+                        mantenimientoEditar.EstadoMantenimiento = mantenimientoEditado.EstadoMantenimiento;
                     }
                 }
                 return RedirectToAction(nameof(Index));
@@ -100,26 +113,26 @@ namespace Proyecto1_KatherineMurillo.Controllers
         // GET: RegistroMantenimiento/Delete/5
         public ActionResult AbrirDeleteMantenimiento(int id)
         {   //Busca el primero en la lista que coincida con el ID dado
-            Mantenimiento obj_mantenimiento = listaMantenimiento.FirstOrDefault(mantenimiento => mantenimiento.IdMantenimiento == id);
+            Mantenimiento mantenimientoEliminar = listaMantenimiento.FirstOrDefault(mantenimiento => mantenimiento.IdMantenimiento == id);
 
-            if (obj_mantenimiento == null) //Verifica si no es nulo 
+            if (mantenimientoEliminar == null) //Verifica si no es nulo 
             {
                 return RedirectToAction(nameof(Index));
             }
-            return View(obj_mantenimiento);
+            return View(mantenimientoEliminar);
         }
 
         // POST: RegistroMantenimiento/Delete/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult DeleteMantenimiento(Mantenimiento obj_mantenimiento)
+        public ActionResult DeleteMantenimiento(Mantenimiento mantenimientoEliminado)
         {
             try
             {   //Busca el primero en la lista que coincida con lo que se va a eliminar
-                Mantenimiento obj_mantenimientodelete = listaMantenimiento.FirstOrDefault(mantenimiento => mantenimiento.IdMantenimiento == obj_mantenimiento.IdMantenimiento);
-                if (obj_mantenimientodelete != null) //Verifica si no es nulo 
+                Mantenimiento mantenimientoEliminar = listaMantenimiento.FirstOrDefault(mantenimiento => mantenimiento.IdMantenimiento == mantenimientoEliminado.IdMantenimiento);
+                if (mantenimientoEliminar != null) //Verifica si no es nulo 
                 {
-                    listaMantenimiento.Remove(obj_mantenimientodelete); //Si se encontró lo elimina de la lista 
+                    listaMantenimiento.Remove(mantenimientoEliminar); //Si se encontró lo elimina de la lista 
                 }
                 return RedirectToAction(nameof(Index));
             }
@@ -127,6 +140,13 @@ namespace Proyecto1_KatherineMurillo.Controllers
             {
                 return View();
             }
+        }
+
+        //Verifica si el ID del mantenimiento ya existe
+        private bool MantenimientoYaExiste(int mantenimiento)
+        {
+            //Comprobar si el ID del mantenimiento ya está en la lista de empleados
+            return listaMantenimiento.Any(e => e.IdMantenimiento == mantenimiento);
         }
     }
 }

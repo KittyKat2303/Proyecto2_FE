@@ -7,6 +7,8 @@
 <h1 style="color:darkcyan">Registros</h1>
 
 <h4 style="color:darkcyan">Eliminar Mantenimiento</h4>
+
+<div>
     <hr />
     <dl class="row">
         <dt class = "col-sm-2">
@@ -94,10 +96,10 @@
             @Html.DisplayFor(model => model.EstadoMantenimiento)
         </dd>
     </dl>
-    
-<form asp-action="AbrirDeleteMantenimiento" method="post">
-    @Html.HiddenFor(model => model.IdMantenimiento)
-    <input type="submit" value="Eliminar" class="btn btn-danger" /> |
-    <a asp-action="Index" class="btn btn-secondary">Cancelar</a>
-</form>
+
+    <form asp-action="DeleteMantenimiento" method="post">
+        @Html.HiddenFor(model => model.IdMantenimiento)
+        <input type="submit" value="Eliminar" class="btn btn-danger" /> |
+        <a asp-action="Index" class="btn btn-secondary">Cancelar</a>
+    </form>
 </div>

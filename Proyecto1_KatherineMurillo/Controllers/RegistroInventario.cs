@@ -39,6 +39,19 @@ namespace Proyecto1_KatherineMurillo.Controllers
                 }
                 else
                 {
+                    //Valida que el ID del inventario se convierte a int
+                    int inventarioInt;
+                    if (!int.TryParse(inventarioNuevo.IdInventario.ToString(), out inventarioInt))
+                    {
+                        ModelState.AddModelError("IdInventario", "El ID del inventario deben ser solo números");
+                        return View(inventarioNuevo);
+                    }
+                    //Verifica si el ID del inventario ya existe
+                    if (InventarioYaExiste(inventarioInt))
+                    {
+                        ModelState.AddModelError("IdInventario", "El ID del inventario ya está registrado");
+                        return View(inventarioNuevo);
+                    }
                     listaInventario.Add(inventarioNuevo); //Si no es nulo se agrega a la lista
                 }
                 return RedirectToAction(nameof(Index));
@@ -93,7 +106,7 @@ namespace Proyecto1_KatherineMurillo.Controllers
         {   //Busca el primero en la lista que coincida con el ID dado
             Inventario inventarioEliminar = listaInventario.FirstOrDefault(inventario => inventario.IdInventario == id);
 
-            if ( inventarioEliminar == null) //Verifica si no es nulo 
+            if (inventarioEliminar == null) //Verifica si no es nulo 
             {
                 return RedirectToAction(nameof(Index));
             }
@@ -118,6 +131,13 @@ namespace Proyecto1_KatherineMurillo.Controllers
             {
                 return View();
             }
+        }
+
+        //Verifica si el ID del inventario ya existe
+        private bool InventarioYaExiste(int inventario)
+        {
+            //Comprobar si el ID del inventario ya está en la lista de empleados
+            return listaInventario.Any(e => e.IdInventario == inventario);
         }
     }
 }

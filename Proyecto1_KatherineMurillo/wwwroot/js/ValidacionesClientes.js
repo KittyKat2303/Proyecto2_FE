@@ -1,20 +1,8 @@
-﻿/*Validación de campo de la identificación del cliente (solo números enteros)
-document.getElementById("Identificacion").addEventListener("input", function (e) {
-    this.value = this.value.replace(/\D/g, ''); // Elimina todo lo que no sea dígito
-});*/
-
-document.getElementById("nombreCompleto").addEventListener("keypress", function (e) {
-    var char = String.fromCharCode(e.which);
-    var regex = /^[a-zA-Z\s]*$/; // Solo letras y espacios
-    if (!regex.test(char)) {
-        e.preventDefault(); // Bloquear cualquier carácter que no sea permitido
-    }
-});
-
+﻿//Validación de campo de identificación
 function soloNumeros(event) {
     var code = (event.which) ? event.which : event.keyCode;
     var alerta = document.getElementById('alerta');
-    if (code >= 48 && code <= 57) { // Números del 0 al 9
+    if (code >= 48 && code <= 57) { //Números del 0 al 9
         alerta.style.display = 'none';
         return true;
     } else {
@@ -22,8 +10,15 @@ function soloNumeros(event) {
         return false;
     }
 }
-
-//Objeto que contiene las provincias y sus respectivos cantones
+//Validación de campo de nombre completo 
+document.getElementById("nombreCompleto").addEventListener("keypress", function (e) {
+    var char = String.fromCharCode(e.which);
+    var regex = /^[a-zA-Z\s]*$/; //Solo letras y espacios
+    if (!regex.test(char)) {
+        e.preventDefault(); //Bloquea cualquier carácter que no sea permitido
+    }
+});
+//Objeto que contiene las provincias y sus cantones
 const cantonesPorProvincia = {
     "San José": ["San José", "Escazú", "Desamparados", "Puriscal", "Tarrazú", "Aserrí", "Mora", "Goicoechea",
         "Santa Ana", "Alajuelita", "Vázquez de Coronado", "Acosta", "Tibás", "Moravia", "Montes de Oca", "Turrubares", "Dota",
@@ -39,8 +34,7 @@ const cantonesPorProvincia = {
         "Coto Brus", "Parrita", "Corredores", "Garabito"],
     "Limón": ["Limón", "Pococí", "Siquirres", "Talamanca", "Matina", "Guácimo"]
 };
-
-// Cantones y distritos por provincia y cantón
+////Objeto que contiene los cantones y sus distritos 
 const distritosPorCanton = {
     "San José": {
         "San José": [
@@ -297,102 +291,81 @@ const distritosPorCanton = {
         ]
     }
 };
-
-// Función para cargar cantones
+//Función para cargar cantones
 function cargarCantones() {
     const provinciaSeleccionada = document.getElementById('provincia').value;
     const cantonSeleccionado = document.getElementById('canton');
-    cantonSeleccionado.innerHTML = ''; // Limpiar el selector de cantones
-
-    // Cargar los cantones de la provincia seleccionada
+    cantonSeleccionado.innerHTML = ''; //Limpia el selector de cantones
+    //Carga los cantones de la provincia seleccionada
     if (distritosPorCanton[provinciaSeleccionada]) {
         const cantones = Object.keys(distritosPorCanton[provinciaSeleccionada]);
-
         cantones.forEach(function (canton) {
             const option = document.createElement('option');
             option.value = canton;
             option.text = canton;
             cantonSeleccionado.appendChild(option);
         });
-
-        // Cargar el distrito del primer cantón por defecto
+        //Carga el distrito del primer cantón 
         cargarDistritos();
     }
 }
-
-// Función para cargar distritos
+//Función para cargar distritos
 function cargarDistritos() {
     const provinciaSeleccionada = document.getElementById('provincia').value;
     const cantonSeleccionado = document.getElementById('canton').value;
     const distritoSeleccionado = document.getElementById('distrito');
-
-    distritoSeleccionado.innerHTML = ''; // Limpiar el selector de distritos
-
+    distritoSeleccionado.innerHTML = ''; //Limpia el selector de distritos
+    //Carga los distritos del cantón seleccionado
     if (provinciaSeleccionada && cantonSeleccionado && distritosPorCanton[provinciaSeleccionada][cantonSeleccionado]) {
         const distritos = distritosPorCanton[provinciaSeleccionada][cantonSeleccionado];
-
         distritos.forEach(function (distrito) {
             const option = document.createElement('option');
             option.value = distrito;
             option.text = distrito;
             distritoSeleccionado.appendChild(option);
         });
-
-        // Si la provincia es San José y el cantón es Carmen, establece "Carmen" como predeterminado
-        if (provinciaSeleccionada === "San José" && cantonSeleccionado === "Carmen") {
-            distritoSeleccionado.value = "Carmen"; // Establecer "Carmen" como el distrito seleccionado
-        } else if (distritoSeleccionado.options.length > 0) {
-            // Establecer el primer distrito como predeterminado si no es "Carmen"
-            distritoSeleccionado.value = distritos[0]; // Asignar el primer distrito como seleccionado
+        if (distritoSeleccionado.options.length > 0) {          
+            distritoSeleccionado.value = distritos[0]; //Asigna el primer distrito como seleccionado
         }
     }
 }
-
-// Eventos para cuando cambie la provincia o el cantón
+//Eventos para cuando cambie la provincia o el cantón
 document.getElementById('provincia').addEventListener('change', cargarCantones);
 document.getElementById('canton').addEventListener('change', cargarDistritos);
-
-// Cargar los cantones y distritos por defecto al cargar la página
+//Carga los cantones y distritos al cargar la página
 window.onload = function () {
-    cargarCantones(); // Carga los cantones de la provincia por defecto (San José)
+    cargarCantones(); 
 };
-
 //Función para almacenar el ID del cliente entre vistas
 document.addEventListener("DOMContentLoaded", function () {
     const identificacionElemento = document.getElementById("identificacionCliente");
-    console.log(identificacionElemento); // Verifica que el elemento no sea nulo
-
-    // Escuchar el evento submit del formulario
+    console.log(identificacionElemento); //Verifica que el elemento no sea nulo
+    //Escucha el evento submit del formulario
     document.querySelector("form").addEventListener("submit", function () {
-        // Obtener el valor de la identificación del cliente
+        //Obtiene el valor de la identificación del cliente
         const identificacionCliente = identificacionElemento.value;
-
-        // Guardar el valor en localStorage
+        //Guarda el valor en localStorage
         if (identificacionCliente) {
             localStorage.setItem("clienteId", identificacionCliente);
         }
     });
 });
-
-//FUNCION ALMACENA PREFERENCIA MANTENIMIENTO
+//Función para almacenar la preferencia del mantenimiento
  document.addEventListener("DOMContentLoaded", function () {
-            const identifyElement = document.getElementById("manteInvierno");
-            console.log(identifyElement); // Verifica que el elemento no sea nulo
-
-            // Escuchar el evento submit del formulario
-            document.querySelector("form").addEventListener("submit", function () {
-                //event.preventDefault(); // Prevenir el envío del formulario para pruebas
-
-                // Obtener el valor de la identificación del cliente
-                const identifyMante = identifyElement.value;
-
-                // Guardar el valor en localStorage
-                if (identifyMante) {
-                    localStorage.setItem("mantenimiento", identifyMante);
-                    //alert("ID del cliente guardado: " + identifyMante);
-                }
-            });
+    const identifyElement = document.getElementById("manteInvierno");
+    console.log(identifyElement); // Verifica que el elemento no sea nulo
+    //Escucha el evento submit del formulario
+    document.querySelector("form").addEventListener("submit", function () {
+        //event.preventDefault(); // Prevenir el envío del formulario para pruebas
+        //Obtiene el valor de la identificación del cliente
+        const identifyMante = identifyElement.value;
+        //Guarda el valor en localStorage
+        if (identifyMante) {
+           localStorage.setItem("mantenimiento", identifyMante);
+           //alert("ID del cliente guardado: " + identifyMante);
+           }
         });
+ });
 
 /*function capturarValor() {
     // Obtener el valor del campo de entrada

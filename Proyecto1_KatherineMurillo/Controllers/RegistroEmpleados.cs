@@ -41,20 +41,20 @@ namespace Proyecto1_KatherineMurillo.Controllers
                 }
                 else
                 {
-                    // Validar que la cédula se convierte a int
+                    //Valida que la cédula se convierte a int
                     int cedulaInt;
                     if (!int.TryParse(empleadoNuevo.Cedula.ToString(), out cedulaInt))
                     {
-                        ModelState.AddModelError("Cedula", "La cédula deben ser solo números"); // Agregar un error al modelo
-                        return View(empleadoNuevo); // Volver a la vista con el modelo
+                        ModelState.AddModelError("Cedula", "La cédula deben ser solo números"); 
+                        return View(empleadoNuevo); 
                     }
-                    // Verificar si la cédula ya existe
+                    //Verifica si la cédula ya existe
                     if (CedulaYaExiste(cedulaInt))
                     {
-                        ModelState.AddModelError("Cedula", "La cédula ya está registrada."); // Agregar un error al modelo
-                        return View(empleadoNuevo); // Volver a la vista con el modelo
+                        ModelState.AddModelError("Cedula", "La cédula ya está registrada"); 
+                        return View(empleadoNuevo); 
                     }                    
-                    listaEmpleados.Add(empleadoNuevo); //Si no es nulo se agrega a la lista 
+                    listaEmpleados.Add(empleadoNuevo); 
                 }
                 return RedirectToAction(nameof(Index));
             }
@@ -134,10 +134,10 @@ namespace Proyecto1_KatherineMurillo.Controllers
             }
         }
 
-        // Método privado para verificar si la cédula ya existe
+        //Verifica si la cédula ya existe
         private bool CedulaYaExiste(int cedula)
         {
-            // Comprobar si la cédula ya está en la lista de empleados
+            //Comprobar si la cédula ya está en la lista de empleados
             return listaEmpleados.Any(e => e.Cedula == cedula);
         }       
     }

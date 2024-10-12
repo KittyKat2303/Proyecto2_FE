@@ -4,7 +4,7 @@ namespace Proyecto1_KatherineMurillo.Models
 {
     public class Inventario
     {
-        [Required(ErrorMessage = "El id del inventario es requerido")] //Valida que no se dejen campos en blanco
+        [Required(ErrorMessage = "El ID del inventario es requerido")] //Valida que no se dejen campos en blanco
         [Display(Name = "ID de inventario")]
         public int IdInventario { get; set; }
         [Required(ErrorMessage = "La descripción es requerida")] //Valida que no se dejen campos en blanco

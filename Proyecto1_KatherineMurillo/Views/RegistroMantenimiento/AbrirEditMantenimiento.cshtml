@@ -4,10 +4,14 @@
     ViewData["Title"] = "AbrirEditMantenimiento";
 }
 
+<h1 style="color:darkcyan">Registros</h1>
+
+<h4 style="color:darkcyan">Editar Mantenimiento</h4>
+
 <hr />
 <div class="row">
     <div class="col-md-4">
-        <form asp-action="AbrirEditMantenimiento" asp-controller="RegistroMantenimiento" method="post">
+        <form asp-action="AbrirEditMantenimiento">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
                 <label class="control-label">ID del mantenimiento:</label>
@@ -89,7 +93,7 @@
 </div>
 
 <div>
-    <a asp-action="Index">Back to List</a>
+    <a asp-action="Index">Regresar al listado</a>
 </div>
 
 @section Scripts {

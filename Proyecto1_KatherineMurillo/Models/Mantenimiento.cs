@@ -4,10 +4,10 @@ namespace Proyecto1_KatherineMurillo.Models
 {
     public class Mantenimiento
     {
-        [Required(ErrorMessage = "El id del mamtenimiento es requerido")] //Valida que no se dejen campos en blanco
+        [Required(ErrorMessage = "El ID del mamtenimiento es requerido")] //Valida que no se dejen campos en blanco
         [Display(Name = "ID de mantenimiento")]
         public int IdMantenimiento { get; set; }
-        [Required(ErrorMessage = "El id del cliente es requerido")] //Valida que no se dejen campos en blanco
+        [Required(ErrorMessage = "El ID del cliente es requerido")] //Valida que no se dejen campos en blanco
         [Display(Name = "ID del cliente")]
         public int IdCliente { get; set; }
         [Required(ErrorMessage = "La fecha de ejecutado es requerida")] //Valida que no se dejen campos en blanco
