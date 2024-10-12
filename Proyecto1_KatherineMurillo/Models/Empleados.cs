@@ -3,20 +3,16 @@ using System.ComponentModel.DataAnnotations;
 namespace Proyecto1_KatherineMurillo.Models
 {
     public class Empleados
-    {
-        [Required(ErrorMessage = "La cédula es requerida")]
-        //[Display(Name = "Cédula")]
+    {        
+        [Required(ErrorMessage = "La cédula es requerida")] //Valida que no se dejen campos en blanco
         public int Cedula { get; set; }
-        [Required(ErrorMessage = "La fecha de nacimiento es requerida")]
-        //[Display(Name = "Fecha de Nacimiento")]
+        [Required(ErrorMessage = "La fecha de nacimiento es requerida")] //Valida que no se dejen campos en blanco
         public DateTime FechaNacimiento { get; set; }
-        [Required(ErrorMessage = "La lateralidad es requerida")]
+        [Required(ErrorMessage = "La lateralidad es requerida")] //Valida que no se dejen campos en blanco
         public string Lateralidad { get; set; }
-        [Required(ErrorMessage = "La fecha de ingreso es requerida")]
-        //[Display(Name = "Fecha de Ingreso")]
+        [Required(ErrorMessage = "La fecha de ingreso es requerida")] //Valida que no se dejen campos en blanco
         public DateTime FechaIngreso { get; set; }
-        [Required(ErrorMessage = "El salario por hora es requerida")]
-        //[Display(Name = "Salario por hora")]
+        [Required(ErrorMessage = "El salario por hora es requerida")] //Valida que no se dejen campos en blanco
         public float SalarioHora { get; set; }
     }
 }
