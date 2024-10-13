@@ -2,7 +2,8 @@
 using Microsoft.AspNetCore.Mvc;
 using Proyecto1_KatherineMurillo.Models;
 using System.Drawing;
-
+using Proyecto1_KatherineMurillo.Controllers;
+using Microsoft.AspNetCore.Mvc.Rendering;
 namespace Proyecto1_KatherineMurillo.Controllers
 {
     public class RegistroMantenimiento : Controller
@@ -24,6 +25,7 @@ namespace Proyecto1_KatherineMurillo.Controllers
         // GET: RegistroMantenimiento/Create
         public ActionResult AbrirCreateMatenimiento()
         {
+           
             return View();
         }
 
@@ -148,5 +150,21 @@ namespace Proyecto1_KatherineMurillo.Controllers
             //Comprobar si el ID del mantenimiento ya está en la lista de empleados
             return listaMantenimiento.Any(e => e.IdMantenimiento == mantenimiento);
         }
+
+        /*private void LoadClientes()
+        {
+            if (!_cache.TryGetValue(RegistroClientes.CacheKey, out List<Clientes> clientesArreglo))
+            {
+                clientesArreglo = new List<Clientes>();
+            }
+
+            var clientes = clientesArreglo.Select(c => new
+            {
+                c.Identificacion,
+                NombreCompletoConIdentificacion = c.Identificacion
+            }).ToList();
+
+            ViewBag.ClientesList = new SelectList(clientes, "identificacion", "NombreCompletoConIdentificacion");
+        }*/
     }
 }
