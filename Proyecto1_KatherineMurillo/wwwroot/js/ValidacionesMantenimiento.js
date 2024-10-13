@@ -2,15 +2,6 @@
 document.getElementById("IdMantenimiento").addEventListener("input", function (e) {
     this.value = this.value.replace(/\D/g, ''); //Elimina todo lo que no sea dígito
 });
-//Al cargar la página se establece el valor del campo IdCliente
-document.addEventListener("DOMContentLoaded", function () {
-    //Recupera el valor del cliente guardado en localStorage
-    const clienteId = localStorage.getItem("clienteId");
-    //Establece el valor en el campo IdCliente
-    if (clienteId) {
-        document.getElementById("idClienteInput").value = clienteId;
-    }
-});
 //Validación de campo de metros de propiedad 
 document.getElementById("MetrosPropiedad").addEventListener("input", function (e) {
     //Elimina cualquier caracter que no sea número o un punto decimal

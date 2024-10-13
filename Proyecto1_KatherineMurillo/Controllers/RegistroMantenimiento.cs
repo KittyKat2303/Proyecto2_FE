@@ -9,6 +9,7 @@ namespace Proyecto1_KatherineMurillo.Controllers
     public class RegistroMantenimiento : Controller
     {
         public static IList<Mantenimiento> listaMantenimiento = new List<Mantenimiento>(); //Lista para almacenar los mantenimientos
+        private const string CacheKeyClientes = "listaClientes";
         // GET: RegistroMantenimiento
         public ActionResult Index(string buscarMantenimiento)
         {
@@ -25,7 +26,9 @@ namespace Proyecto1_KatherineMurillo.Controllers
         // GET: RegistroMantenimiento/Create
         public ActionResult AbrirCreateMatenimiento()
         {
-           
+            // Obtener la lista de clientes desde la caché
+            var listaClientes = HttpContext.Items[CacheKeyClientes] as List<Clientes> ?? new List<Clientes>();
+            ViewBag.Clientes = new SelectList(listaClientes, "Identificacion", "NombreCompletoClientes");
             return View();
         }
 
@@ -55,7 +58,7 @@ namespace Proyecto1_KatherineMurillo.Controllers
                         ModelState.AddModelError("IdMantenimiento", "El ID del mantenimiento ya está registrado");
                         return View(mantenimientoNuevo);
                     }
-                    listaMantenimiento.Add(mantenimientoNuevo); //Si no es nulo se agrega a la lista
+                    listaMantenimiento.Add(mantenimientoNuevo);                   
                 }
                 return RedirectToAction(nameof(Index));
             }
@@ -149,22 +152,6 @@ namespace Proyecto1_KatherineMurillo.Controllers
         {
             //Comprobar si el ID del mantenimiento ya está en la lista de empleados
             return listaMantenimiento.Any(e => e.IdMantenimiento == mantenimiento);
-        }
-
-        /*private void LoadClientes()
-        {
-            if (!_cache.TryGetValue(RegistroClientes.CacheKey, out List<Clientes> clientesArreglo))
-            {
-                clientesArreglo = new List<Clientes>();
-            }
-
-            var clientes = clientesArreglo.Select(c => new
-            {
-                c.Identificacion,
-                NombreCompletoConIdentificacion = c.Identificacion
-            }).ToList();
-
-            ViewBag.ClientesList = new SelectList(clientes, "identificacion", "NombreCompletoConIdentificacion");
-        }*/
+        }       
     }
 }
