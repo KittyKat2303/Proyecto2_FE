@@ -39,30 +39,30 @@ const distritosPorCanton = {
     "San José": {
         "San José": [
             "Carmen", "Merced", "Hospital", "Catedral", "Zapote", "San Francisco de Dos Ríos",
-            "La Uruca", "Mata Redonda", "Pavas", "Hatillo", "San Sebastián"
+            "La Uruca", "Mata Redonda", "Pavas", "Hatillo", "San Sebastián", "Desamparados"
         ],
         "Escazú": [
-            "Escazú", "San Antonio", "San Rafael"
+            "San Rafael", "San Antonio", "San Miguel", "San José", "Playa Grande"
         ],
         "Desamparados": [
-            "Desamparados", "San Miguel", "San Juan de Dios", "San Rafael Arriba", "San Antonio", "Frailes", "Patarrá",
-            "San Cristóbal", "Rosario", "Damas", "San Rafael Abajo", "Gravilias", "Los Guido"          
+            "San Miguel", "San Rafael Arriba", "San Rafael Abajo", "Gravilias", "Damas", "San Cristóbal", "Rosario",
+            "Frailes", "Patarrá", "San Antonio", "Aserrí", "Tarbaca", "Vuelta de Jorco", "San Gabriel", "San Marcos",
+            "San Pablo", "San Pedro", "San Ignacio"
         ],
         "Puriscal": [
-            "Santiago", "Mercedes Sur", "Barbacoas", "Grifo Alto", "San Rafael", "Candelarita", "Desamparaditos",
-            "San Antonio", "Chires"
+            "Santiago", "Barbacoas", "Grifo Alto", "Mercedes Sur", "San Rafael", "San Antonio", "Candelaria"
         ],
         "Tarrazú": [
             "San Marcos", "San Lorenzo", "San Carlos"
         ],
         "Aserrí": [
-            "Aserrí", "Tarbaca", "Vuelta de Jorco", "San Gabriel", "Legua", "Monterrey", "Salitrillos"
+            "Tarbaca", "Aserrí", "San Gabriel"
         ],
         "Mora": [
-            "Ciudad Colón", "Guayabo", "Tabarcia", "Piedras Negras", "Picagres", "Jaris", "Quitirrisí"
+            "Ciudad Colón", "Guayabo", "Tabarcia", "Piedras Negras"
         ],
         "Goicoechea": [
-            "Guadalupe", "San Francisco", "Calle Blancos", "Mata de plátano", "Ipís"
+            "San Francisco", "San Isidro", "Cascajal", "Los Angeles", "El Carmen", "La Trinidad"
         ],
         "Santa Ana": [
             "Santa Ana", "Salitral", "Pozos", "Uruca"
@@ -98,7 +98,7 @@ const distritosPorCanton = {
     "Alajuela": {
         "Alajuela": [
             "Carrizal", "San Antonio", "Guácima", "San Isidro", "Sabanilla", "San Rafael", "Río Segundo", "Desamparados",
-            "Turrúcares", "Tambor", "Garita", "San Ramón", "Santiago", "San Juan", "Sarapiquí"
+            "Turrúcares", "Tambor", "Garita", "San Ramón", "Santiago", "San Juan"
         ],
         "San Ramón": [
             "San Ramón", "San Juan", "Piedades", "San Isidro", "San Rafael", "San Antonio", "Palmares", "Naranjo"
@@ -150,7 +150,7 @@ const distritosPorCanton = {
         "Cartago": [
             "Oriental", "Occidental", "Carmen", "San Nicolás", "Agua Caliente", "Guadalupe", "Corralillo", "Tierra Blanca",
             "Dulce Nombre", "Llano Grande", "Quebradilla", "Paraíso", "Santiago", "Orosi", "Cachí", "La Unión", "Tres Ríos",
-            "San Diego", "San Juan", "San Rafael", "Sarapiquí"
+            "San Diego", "San Juan", "San Rafael"
         ],
         "Paraíso": [
             "Paraíso", "Santiago", "Orosi", "Cachí"
@@ -336,7 +336,20 @@ document.getElementById('canton').addEventListener('change', cargarDistritos);
 window.onload = function () {
     cargarCantones(); 
 };
-
+//Función para almacenar el ID del cliente entre vistas
+document.addEventListener("DOMContentLoaded", function () {
+    const identificacionElemento = document.getElementById("identificacionCliente");
+    console.log(identificacionElemento); //Verifica que el elemento no sea nulo
+    //Escucha el evento submit del formulario
+    document.querySelector("form").addEventListener("submit", function () {
+        //Obtiene el valor de la identificación del cliente
+        const identificacionCliente = identificacionElemento.value;
+        //Guarda el valor en localStorage
+        if (identificacionCliente) {
+            localStorage.setItem("clienteId", identificacionCliente);
+        }
+    });
+});
 //Función para almacenar la preferencia del mantenimiento
  document.addEventListener("DOMContentLoaded", function () {
     const identifyElement = document.getElementById("manteInvierno");
@@ -353,3 +366,17 @@ window.onload = function () {
            }
         });
  });
+
+/*function capturarValor() {
+    // Obtener el valor del campo de entrada
+    var inputElement = document.getElementById('inputCampo');
+    var valor = inputElement.value;
+
+    // Mostrar el valor en la otra vista
+    var valorCapturadoElement = document.getElementById('valorCapturado');
+    valorCapturadoElement.textContent = valor;
+
+    // Ocultar la primera vista y mostrar la segunda vista
+    document.getElementById('vista1').style.display = 'none';
+    document.getElementById('vista2').style.display = 'block';
+}*/ 

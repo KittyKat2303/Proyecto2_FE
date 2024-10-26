@@ -7,7 +7,6 @@ namespace Proyecto1_KatherineMurillo.Controllers
     public class RegistroClientes : Controller
     {
         public static IList<Clientes> listaClientes = new List<Clientes>(); //Lista para almacenar los clientes
-        private const string CacheKeyClientes = "listaClientes";
 
         // GET: RegistroClientes
         public ActionResult Index(string buscarIdentificacion)
@@ -42,16 +41,7 @@ namespace Proyecto1_KatherineMurillo.Controllers
                 }
                 else
                 {
-                    if (ModelState.IsValid)
-                    {
-                        // Obtener la lista de clientes del caché
-                        var listaClientes = HttpContext.Items[CacheKeyClientes] as List<Clientes> ?? new List<Clientes>();
-                        // Agregar el nuevo cliente a la lista
-                        listaClientes.Add(clienteNuevo);
-                        // Guardar la lista actualizada en caché
-                        HttpContext.Items[CacheKeyClientes] = listaClientes;
-                    }
-                    listaClientes.Add(clienteNuevo);
+                    listaClientes.Add(clienteNuevo); //Si no es nulo se agrega a la lista
                 }
                 return RedirectToAction(nameof(Index));
             }
