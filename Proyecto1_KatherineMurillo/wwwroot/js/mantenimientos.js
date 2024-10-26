@@ -98,28 +98,5 @@ function mostrarProximaChapia() {
     //Muestra el resultado
     document.getElementById('result').value = `Fecha próxima chapia: ${proximaChapia}`;
 }
-// Cálculo de costos totales
-function calcularCostos() {
-    const metrosPropiedad = parseFloat(document.getElementById("MetrosPropiedad").value) || 0;
-    const metrosCercaViva = parseFloat(document.getElementById("MetrosCercaViva").value) || 0;
-    const costoChapia = parseFloat(document.getElementById("CostoChapia").value) || 0;
-    const costoProducto = parseFloat(document.getElementById("CostoProducto").value) || 0;
-
-    // Cálculo del costo total de chapia
-    const costoTotalChapia = metrosPropiedad + metrosCercaViva * costoChapia * 1.13; // Incluyendo IVA (13%)
-    document.getElementById("CostoIVA").value = costoTotalChapia.toFixed(2); // Formato dos decimales
-
-    // Verificar si se aplica el producto
-    const aplicaProducto = document.getElementById("AplicacionProducto").value;
-    let costoTotalAplicacionProducto = 0;
-
-    if (aplicaProducto === "Sí") {
-        // Calcular costo total de aplicación de producto si aplica
-        costoTotalAplicacionProducto = costoTotalChapia * costoProducto * 1.13; // Incluyendo IVA (13%)
-    }
-    document.getElementById("CostoAplicacionIVA").value = costoTotalAplicacionProducto.toFixed(2); // Formato dos decimales
-}
-
-
 
 
