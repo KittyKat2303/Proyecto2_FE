@@ -5,9 +5,10 @@ namespace Proyecto1_KatherineMurillo.Controllers
 {
     public class ProductController : Controller
     {
-        #region VARIABLE PRIVADA
-    
+        #region MyRegion   
+      
         #endregion
+
         #region EVENTO DE APERTURA VIEW
         public async Task<IActionResult> Index()
         {
@@ -22,10 +23,21 @@ namespace Proyecto1_KatherineMurillo.Controllers
         public async Task<IActionResult> AbrirModificarProduct(int _iId_Product)  
         {
             cls_GestorCNXApis Obj_Gestor = new cls_GestorCNXApis();   //INSTANCIO OBJ DE LA CLASE GESTORCONEX
-            List<cls_Product> _lstResultado = await Obj_Gestor.ConsultarProduct(new cls_Product { iId = _iId_Product });
+            List<cls_Product> _lstResultado = await Obj_Gestor.ConsultarProduct(new cls_Product { iId = _iId_Product});
             cls_Product Obj_Encontrado = _lstResultado.FirstOrDefault();  //ENCUENTRA EL PRIMER DATO DE LA LISTA
+           
             return View(Obj_Encontrado);
         }
+        // GET: Productos/Edit/5
+        /*public IActionResult AbrirEditProduct(int _iId_Product)
+        {
+            var producto = productos.FirstOrDefault(p => p.iId == _iId_Product);
+            if (producto == null)
+            {
+                return NotFound();
+            }
+            return View(producto);
+        }*/
 
         [HttpGet]
         public async Task<IActionResult> AbrirEliminarProduct(int _iId_Product)

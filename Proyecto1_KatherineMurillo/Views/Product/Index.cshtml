@@ -31,7 +31,7 @@
                 @Html.DisplayFor(modelItem => item.sNombre)
             </td>
             <td>
-                    @Html.ActionLink("Modificar", "AbrirModificarProduct", new { _iId_Product= item.iId.ToString() }, new { @class = "btn btn-warning" }) |
+                    @Html.ActionLink("Modificar", "AbrirModificarProduct", new { _iId_Product = item.iId }, new { @class = "btn btn-warning" }) |
                     @Html.ActionLink("Eliminar", "AbrirEliminarProduct", new { _iId_Product = item.iId }, new { @class = "btn btn-danger" })
             </td>
         </tr>

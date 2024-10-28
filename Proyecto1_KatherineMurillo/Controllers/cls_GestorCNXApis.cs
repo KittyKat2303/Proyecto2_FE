@@ -45,7 +45,7 @@ namespace Proyecto1_KatherineMurillo.Controllers
         public async Task<List<cls_Product>> ConsultarProduct(cls_Product P_Entidad)
         {
             List<cls_Product> Obj_lstResultado = new List<cls_Product>();
-            string _sRutaAPI = @"api/Product/FiltrarProduct";
+            string _sRutaAPI = @"api/Product/ConsultarProduct";
 
             hcCNXApi.DefaultRequestHeaders.Add("id", P_Entidad.iId.ToString());
 
