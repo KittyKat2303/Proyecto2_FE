@@ -18,8 +18,8 @@ namespace Proyecto1_KatherineMurillo.Controllers
         #region METODOS
 
         #region PRIVADOS
-        private void EstablecerConexion()                              // AL OBJ CONEXIONAPIS LE DEBO DE ESTABLECER CIERTOS DATOS
-        {                                                                     // INDICAR QUE EL TRASLADO DE DATOS VA EN FORMATO JSON Y QUE CUAL ES LA DIRECCION BASE AL QUE VA APUNTAR
+        private void EstablecerConexion()                                // AL OBJ CONEXIONAPIS LE DEBO DE ESTABLECER CIERTOS DATOS
+        {                                                               // INDICAR QUE EL TRASLADO DE DATOS VA EN FORMATO JSON Y QUE CUAL ES LA DIRECCION BASE AL QUE VA APUNTAR
             hcCNXApi.BaseAddress = new Uri("http://localhost:35464");  // EL URI AGARRA LA RUTA BASE  DEL API PUEDE SER IIS O DEL HOST API
             hcCNXApi.DefaultRequestHeaders.Accept.Clear();            //SE LIMPIAN LOS VALORES POR DEFECTO   
             hcCNXApi.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
@@ -48,7 +48,7 @@ namespace Proyecto1_KatherineMurillo.Controllers
             string _sRutaAPI = @"api/Product/ConsultarProduct";
 
             hcCNXApi.DefaultRequestHeaders.Add("id", P_Entidad.iId.ToString());
-
+            
             HttpResponseMessage resultadoconsumo = await hcCNXApi.GetAsync(_sRutaAPI);
             if (resultadoconsumo.IsSuccessStatusCode)
             {
@@ -57,7 +57,6 @@ namespace Proyecto1_KatherineMurillo.Controllers
             }
             return Obj_lstResultado;
         }
-
 
         public async Task<bool> AgregarProduct(cls_Product P_Entidad)
         {
@@ -84,6 +83,10 @@ namespace Proyecto1_KatherineMurillo.Controllers
             HttpResponseMessage resultadoconsumo = await hcCNXApi.DeleteAsync(_sRutaAPI);
             return resultadoconsumo.IsSuccessStatusCode;
         }
+        #endregion
+
+        #region EMPLEADOS
+
         #endregion
 
         #endregion
