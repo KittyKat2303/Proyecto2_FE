@@ -182,7 +182,7 @@ namespace Proyecto1_KatherineMurillo.Controllers
         public async Task<IActionResult> UpdateEmpleado(Empleados P_Entidad)
         {
             cls_GestorCNXApis Obj_Gestor = new cls_GestorCNXApis();
-            await Obj_Gestor.AgregarEmpleado(P_Entidad);
+            await Obj_Gestor.ModificarEmpleado(P_Entidad);
             return RedirectToAction("ListadoEmpleados", "RegistroEmpleados");
         }
         #endregion
