@@ -1,0 +1,58 @@
+﻿@model Proyecto1_KatherineMurillo.Models.Empleados
+
+@{
+    ViewData["Title"] = "AbrirCrearEmpleado";
+}
+
+<h1>Mantenimiento Empleados</h1>
+
+<h4>Digite el Nuevo Empleado:</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="InsertEmpleado" asp-controller="RegistroEmpleados" method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label class="control-label">Digite la cédula:</label>
+                <input asp-for="iCedula" maxlength="9" class="form-control" />
+                <span asp-validation-for="iCedula" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label class="control-label">Digite el nombre completo:</label>
+                <input asp-for="sNombreCompleto" class="form-control" />
+                <span asp-validation-for="sNombreCompleto" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label class="control-label">Seleccione la fecha de nacimiento:</label>
+                <input asp-for="dtmFechaNacimiento" type="date" class="form-control" />
+                <span asp-validation-for="dtmFechaNacimiento" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label class="control-label">Seleccione lateralidad:</label>
+                <input asp-for="sLateralidad" class="form-control" />
+                <span asp-validation-for="sLateralidad" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label class="control-label">Seleccione la fecha de ingreso:</label>
+                <input asp-for="dtmFechaIngreso" type="date" class="form-control" />
+                <span asp-validation-for="dtmFechaIngreso" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label class="control-label">Digite el salario por hora:</label>
+                <input asp-for="fSalarioHora" class="form-control" />
+                <span asp-validation-for="fSalarioHora" class="text-danger"></span>
+            </div>
+           
+            <div class="form-group">
+                <input type="submit" value="Guardar" class="btn btn-success" />
+            </div>
+        </form>
+    </div>
+</div>
+<div>
+    <a asp-action="ListadoEmpleados">Regrear al Listado</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

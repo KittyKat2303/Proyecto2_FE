@@ -139,6 +139,52 @@ namespace Proyecto1_KatherineMurillo.Controllers
         {
             //Comprobar si la cédula ya está en la lista de empleados
             return listaEmpleados.Any(e => e.Cedula == cedula);
-        }       
+        }
+
+        #region EVENTOS DE APERTURA VIEW
+        public async Task<IActionResult> ListadoEmpleados()
+        {
+            cls_GestorCNXApis Obj_CNX = new cls_GestorCNXApis();
+            List<Empleados> lstResultado = await Obj_CNX.ListarEmpleado();
+            return View(lstResultado);
+        }
+        public IActionResult AbrirCrearEmpleado()
+        {
+            return View();
+        }
+        public async Task<IActionResult> AbrirModificarEmpleado(int _iId_Empleado)
+        {
+            cls_GestorCNXApis Obj_Gestor = new cls_GestorCNXApis();   //INSTANCIO OBJ DE LA CLASE GESTORCONEX
+            List<Empleados> _lstResultado = await Obj_Gestor.ConsultarEmpleado(new Empleados { iCedula = _iId_Empleado });
+            Empleados Obj_Encontrado = _lstResultado.FirstOrDefault();  //ENCUENTRA EL PRIMER DATO DE LA LISTA
+            return View(Obj_Encontrado);
+        }
+        
+        [HttpGet]
+        public async Task<IActionResult> AbrirEliminarEmpleado(int _iId_Empleado)
+        {
+            cls_GestorCNXApis Obj_Gestor = new cls_GestorCNXApis();
+            await Obj_Gestor.EliminarEmpleado(new Empleados { iCedula = _iId_Empleado });
+            return RedirectToAction("ListadoEmpleados", "RegistroEmpleados");
+        }
+        #endregion
+
+        #region EVENTOS MANTENIMIENTOS
+        [HttpPost]
+        public async Task<IActionResult> InsertEmpleado(Empleados P_Entidad)
+        {
+            cls_GestorCNXApis Obj_Gestor = new cls_GestorCNXApis();
+            await Obj_Gestor.AgregarEmpleado(P_Entidad);
+            return RedirectToAction("ListadoEmpleados", "RegistroEmpleados");
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> UpdateEmpleado(Empleados P_Entidad)
+        {
+            cls_GestorCNXApis Obj_Gestor = new cls_GestorCNXApis();
+            await Obj_Gestor.AgregarEmpleado(P_Entidad);
+            return RedirectToAction("ListadoEmpleados", "RegistroEmpleados");
+        }
+        #endregion
     }
 }

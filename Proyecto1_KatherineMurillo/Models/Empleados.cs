@@ -3,7 +3,25 @@ using System.ComponentModel.DataAnnotations;
 namespace Proyecto1_KatherineMurillo.Models
 {
     public class Empleados
-    {        
+    {
+        #region VARIABLES PUBLICAS
+        public int iCedula { get; set; }
+        public string sNombreCompleto { get; set; }
+        public DateTime dtmFechaNacimiento { get; set; }
+        public string sLateralidad { get; set; }
+        public DateTime dtmFechaIngreso { get; set; }
+        public float fSalarioHora { get; set; }
+        public Empleados()
+        {
+            iCedula = 0;
+            sNombreCompleto = string.Empty;
+            dtmFechaNacimiento = DateTime.MinValue;
+            sLateralidad = string.Empty;
+            dtmFechaIngreso = DateTime.MinValue;
+            fSalarioHora = 0;
+        }
+        #endregion
+
         [Required(ErrorMessage = "La cédula es requerida")] //Valida que no se dejen campos en blanco
         [Display(Name = "Cédula")]
         public int Cedula { get; set; }

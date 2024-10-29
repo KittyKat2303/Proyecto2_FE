@@ -57,7 +57,6 @@ namespace Proyecto1_KatherineMurillo.Controllers
             }
             return Obj_lstResultado;
         }
-
         public async Task<bool> AgregarProduct(cls_Product P_Entidad)
         {
             string _sRutaAPI = @"api/Product/AgregarProduct";    //VA A CONCATENAR A LA RUTA BASE     
@@ -86,6 +85,74 @@ namespace Proyecto1_KatherineMurillo.Controllers
         #endregion
 
         #region EMPLEADOS
+        public async Task<List<Empleados>> ListarEmpleado()
+        {
+            List<Empleados> Obj_lstResultado = new List<Empleados>();
+            string _sRutaAPI = @"api/Empleados/ListarEmpleado";
+
+            HttpResponseMessage resultadoconsumo = await hcCNXApi.GetAsync(_sRutaAPI);
+            if (resultadoconsumo.IsSuccessStatusCode)
+            {
+                string jsonstring = await resultadoconsumo.Content.ReadAsStringAsync();
+                Obj_lstResultado = JsonSerializer.Deserialize<List<Empleados>>(jsonstring);
+            }
+            return Obj_lstResultado;
+        }
+        public async Task<List<Empleados>> ConsultarEmpleado(Empleados P_Entidad)
+        {
+            List<Empleados> Obj_lstResultado = new List<Empleados>();
+            string _sRutaAPI = @"api/Empleados/ConsultarEmpleado";
+
+            hcCNXApi.DefaultRequestHeaders.Add("id", P_Entidad.iCedula.ToString());
+
+            HttpResponseMessage resultadoconsumo = await hcCNXApi.GetAsync(_sRutaAPI);
+            if (resultadoconsumo.IsSuccessStatusCode)
+            {
+                string jsonstring = await resultadoconsumo.Content.ReadAsStringAsync();
+                Obj_lstResultado = JsonSerializer.Deserialize<List<Empleados>>(jsonstring);
+            }
+            return Obj_lstResultado;
+        }
+        public async Task<bool> AgregarEmpleado(Empleados P_Entidad)
+        {
+            string _sRutaAPI = @"api/Empleados/AgregarEmpleado";    //VA A CONCATENAR A LA RUTA BASE     
+
+            HttpResponseMessage resultadoconsumo = await hcCNXApi.PostAsJsonAsync(_sRutaAPI, P_Entidad);
+            return resultadoconsumo.IsSuccessStatusCode;
+        }
+        public async Task<bool> ModificarEmpleado(Empleados P_Entidad)
+        {
+            string _sRutaAPI = @"api/Empleados/ModificarEmpleado";    //VA A CONCATENAR A LA RUTA BASE     
+
+            hcCNXApi.DefaultRequestHeaders.Add("id", P_Entidad.iCedula.ToString());        //HAY UN PARAMETRO "id" DEL CONTROLLER DE LA SOLUCION BASE
+
+            HttpResponseMessage resultadoconsumo = await hcCNXApi.PutAsJsonAsync(_sRutaAPI, P_Entidad);
+            return resultadoconsumo.IsSuccessStatusCode;
+        }
+        public async Task<bool> EliminarEmpleado(Empleados P_Entidad)
+        {
+            string _sRutaAPI = @"api/Empleados/EliminarProduct";    //VA A CONCATENAR A LA RUTA BASE     
+
+            hcCNXApi.DefaultRequestHeaders.Add("id", P_Entidad.iCedula.ToString());        //HAY UN PARAMETRO "id" DEL CONTROLLER DE LA SOLUCION BASE
+
+            HttpResponseMessage resultadoconsumo = await hcCNXApi.DeleteAsync(_sRutaAPI);
+            return resultadoconsumo.IsSuccessStatusCode;
+        }
+        #endregion
+
+        #region CLIENTES
+
+        #endregion
+
+        #region INVENTARIOS
+
+        #endregion
+
+        #region MANTENIMIENTOS
+
+        #endregion
+
+        #region REPORTES
 
         #endregion
 
