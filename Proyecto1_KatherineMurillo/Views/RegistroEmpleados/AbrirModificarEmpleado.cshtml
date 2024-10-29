@@ -1,19 +1,20 @@
 ﻿@model Proyecto1_KatherineMurillo.Models.Empleados
 
 @{
-    ViewData["Title"] = "AbrirCrearEmpleado";
+    ViewData["Title"] = "AbrirModificarEmpleado";
 }
 
 <h1>Mantenimiento Empleados</h1>
 
-<h4>Digite el Nuevo Empleado:</h4>
+<h4>Modifique el Empleado:</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
-        <form asp-action="InsertEmpleado" asp-controller="RegistroEmpleados" method="post">
+        <form asp-action="UpdateEmpleado" asp-controller="RegistroEmpleados" method="post">
+            >
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
-                <label class="control-label">Digite la cédula:</label>
+                <label class="control-label">Cédula:</label>
                 <input asp-for="iCedula" type="text" maxlength="9" class="form-control" />
                 <span asp-validation-for="iCedula" class="text-danger"></span>
             </div>
@@ -42,13 +43,14 @@
                 <input asp-for="fSalarioHora" class="form-control" />
                 <span asp-validation-for="fSalarioHora" class="text-danger"></span>
             </div>
-           
+            
             <div class="form-group">
                 <input type="submit" value="Guardar" class="btn btn-success" />
             </div>
         </form>
     </div>
 </div>
+
 <div>
     <a asp-action="ListadoEmpleados">Regrear al Listado</a>
 </div>
