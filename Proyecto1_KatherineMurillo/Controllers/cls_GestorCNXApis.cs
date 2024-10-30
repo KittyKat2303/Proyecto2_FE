@@ -86,7 +86,7 @@ namespace Proyecto1_KatherineMurillo.Controllers
         public async Task<List<Empleados>> ListarEmpleados()
         {
             List<Empleados> Obj_lstResultado = new List<Empleados>();
-            string _sRutaAPI = @"api/Empleados/ListarEmpleados";
+            string _sRutaAPI = @"api/Empleados/ListarEmpleado";
 
             HttpResponseMessage resultadoconsumo = await hcCNXApi.GetAsync(_sRutaAPI);
             if (resultadoconsumo.IsSuccessStatusCode)
@@ -99,7 +99,7 @@ namespace Proyecto1_KatherineMurillo.Controllers
         public async Task<List<Empleados>> ConsultarEmpleados(Empleados P_Entidad)
         {
             List<Empleados> Obj_lstResultado = new List<Empleados>();
-            string _sRutaAPI = @"api/Empleados/ConsultarEmpleados";
+            string _sRutaAPI = @"api/Empleados/ConsultarEmpleado";
 
             hcCNXApi.DefaultRequestHeaders.Add("id", P_Entidad.iCedula.ToString());
 
@@ -113,14 +113,14 @@ namespace Proyecto1_KatherineMurillo.Controllers
         }
         public async Task<bool> AgregarEmpleados(Empleados P_Entidad)
         {
-            string _sRutaAPI = @"api/Empleados/AgregarEmpleados";    //VA A CONCATENAR A LA RUTA BASE     
+            string _sRutaAPI = @"api/Empleados/AgregarEmpleado";    //VA A CONCATENAR A LA RUTA BASE     
 
             HttpResponseMessage resultadoconsumo = await hcCNXApi.PostAsJsonAsync(_sRutaAPI, P_Entidad);
             return resultadoconsumo.IsSuccessStatusCode;
         }
         public async Task<bool> ModificarEmpleados(Empleados P_Entidad)
         {
-            string _sRutaAPI = @"api/Empleados/ModificarEmpleados";    //VA A CONCATENAR A LA RUTA BASE     
+            string _sRutaAPI = @"api/Empleados/ModificarEmpleado";    //VA A CONCATENAR A LA RUTA BASE     
 
             hcCNXApi.DefaultRequestHeaders.Add("id", P_Entidad.iCedula.ToString());        //HAY UN PARAMETRO "id" DEL CONTROLLER DE LA SOLUCION BASE
 
@@ -129,7 +129,7 @@ namespace Proyecto1_KatherineMurillo.Controllers
         }
         public async Task<bool> EliminarEmpleados(Empleados P_Entidad)
         {
-            string _sRutaAPI = @"api/Empleados/EliminarEmpleados";    //VA A CONCATENAR A LA RUTA BASE     
+            string _sRutaAPI = @"api/Empleados/EliminarEmpleado";    //VA A CONCATENAR A LA RUTA BASE     
 
             hcCNXApi.DefaultRequestHeaders.Add("id", P_Entidad.iCedula.ToString());        //HAY UN PARAMETRO "id" DEL CONTROLLER DE LA SOLUCION BASE
 
@@ -208,7 +208,7 @@ namespace Proyecto1_KatherineMurillo.Controllers
             }
             return Obj_lstResultado;
         }
-        public async Task<List<Clientes>> ConsultarEmpleado(Clientes P_Entidad)
+        public async Task<List<Clientes>> ConsultarClientes(Clientes P_Entidad)
         {
             List<Clientes> Obj_lstResultado = new List<Clientes>();
             string _sRutaAPI = @"api/Clientes/ConsultarClientes";

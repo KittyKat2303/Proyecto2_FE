@@ -1,0 +1,16 @@
+﻿
+@{
+    ViewData["Title"] = "FiltrarEmpleado";
+}
+
+<h1>Empleados</h1>
+<form asp-action="FiltrarEmpleado" asp-controller="RegistroEmpleado" method="get">
+    @* ASOCIO LA ACCION DEL CONTROLLLER ASP-ACTION Y LE ASIGNO EL CONTROLLER ASP-CONTROLLER *@
+    <div>
+        <label>Buscar Id</label>
+        <input name="_sUsuarioBuscar" placeholder="buscar por cedula empleado" type="search" @*class="input w-full border mt-2"*@ /> @*EL NAME COINCIDE CON EL VALOR DEL STRING QUE RECIBE*@
+        <br />
+        <button type="submit" class="button"> <span class="spinner-border spinner-border-sm"></span> Filtrar</button>
+    </div>
+</form>
+
