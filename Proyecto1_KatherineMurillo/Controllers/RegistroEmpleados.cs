@@ -145,13 +145,13 @@ namespace Proyecto1_KatherineMurillo.Controllers
         public async Task<IActionResult> ListadoEmpleados()
         {
             cls_GestorCNXApis Obj_CNX = new cls_GestorCNXApis();
-            List<Empleados> lstResultado = await Obj_CNX.ListarEmpleado();
+            List<Empleados> lstResultado = await Obj_CNX.ListarEmpleados();
             return View(lstResultado);
         }
         public async Task<IActionResult> FiltrarEmpleado(string _sIdBuscar) 
         {
             cls_GestorCNXApis Obj_CNX = new cls_GestorCNXApis();   //INSTANCIO OBJ DE LA CLASE GESTORCONEX
-            List<Empleados> lstResultado = await Obj_CNX.ListarEmpleado();
+            List<Empleados> lstResultado = await Obj_CNX.ListarEmpleados();
             if (!string.IsNullOrEmpty(_sIdBuscar)) 
             {
                 lstResultado = lstResultado.FindAll(item => item.iCedula.ToString().Contains(_sIdBuscar, System.StringComparison.CurrentCultureIgnoreCase)).ToList();
@@ -165,7 +165,7 @@ namespace Proyecto1_KatherineMurillo.Controllers
         public async Task<IActionResult> AbrirModificarEmpleado(int _iId_Empleado)
         {
             cls_GestorCNXApis Obj_Gestor = new cls_GestorCNXApis();   //INSTANCIO OBJ DE LA CLASE GESTORCONEX
-            List<Empleados> _lstResultado = await Obj_Gestor.ConsultarEmpleado(new Empleados { iCedula = _iId_Empleado });
+            List<Empleados> _lstResultado = await Obj_Gestor.ConsultarEmpleados(new Empleados { iCedula = _iId_Empleado });
             Empleados Obj_Encontrado = _lstResultado.FirstOrDefault();  //ENCUENTRA EL PRIMER DATO DE LA LISTA
             return View(Obj_Encontrado);
         }
@@ -174,7 +174,7 @@ namespace Proyecto1_KatherineMurillo.Controllers
         public async Task<IActionResult> AbrirEliminarEmpleado(int _iId_Empleado)
         {
             cls_GestorCNXApis Obj_Gestor = new cls_GestorCNXApis();
-            await Obj_Gestor.EliminarEmpleado(new Empleados { iCedula = _iId_Empleado });
+            await Obj_Gestor.EliminarEmpleados(new Empleados { iCedula = _iId_Empleado });
             return RedirectToAction("ListadoEmpleados", "RegistroEmpleados");
         }
         #endregion
@@ -184,7 +184,7 @@ namespace Proyecto1_KatherineMurillo.Controllers
         public async Task<IActionResult> InsertEmpleado(Empleados P_Entidad)
         {
             cls_GestorCNXApis Obj_Gestor = new cls_GestorCNXApis();
-            await Obj_Gestor.AgregarEmpleado(P_Entidad);
+            await Obj_Gestor.AgregarEmpleados(P_Entidad);
             return RedirectToAction("ListadoEmpleados", "RegistroEmpleados");
         }
 
@@ -192,7 +192,7 @@ namespace Proyecto1_KatherineMurillo.Controllers
         public async Task<IActionResult> UpdateEmpleado(Empleados P_Entidad)
         {
             cls_GestorCNXApis Obj_Gestor = new cls_GestorCNXApis();
-            await Obj_Gestor.ModificarEmpleado(P_Entidad);
+            await Obj_Gestor.ModificarEmpleados(P_Entidad);
             return RedirectToAction("ListadoEmpleados", "RegistroEmpleados");
         }
         #endregion
