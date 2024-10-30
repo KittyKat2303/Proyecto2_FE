@@ -148,6 +148,16 @@ namespace Proyecto1_KatherineMurillo.Controllers
             List<Empleados> lstResultado = await Obj_CNX.ListarEmpleado();
             return View(lstResultado);
         }
+        public async Task<IActionResult> FiltrarEmpleado(string _sIdBuscar) 
+        {
+            cls_GestorCNXApis Obj_CNX = new cls_GestorCNXApis();   //INSTANCIO OBJ DE LA CLASE GESTORCONEX
+            List<Empleados> lstResultado = await Obj_CNX.ListarEmpleado();
+            if (!string.IsNullOrEmpty(_sIdBuscar)) 
+            {
+                lstResultado = lstResultado.FindAll(item => item.iCedula.ToString().Contains(_sIdBuscar, System.StringComparison.CurrentCultureIgnoreCase)).ToList();
+            }
+            return View(lstResultado);
+        }
         public IActionResult AbrirCrearEmpleado()
         {
             return View();
