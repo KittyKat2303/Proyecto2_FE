@@ -1,25 +1,17 @@
-﻿@model IEnumerable<Proyecto1_KatherineMurillo.Models.Mantenimiento>
+﻿@model IEnumerable<Proyecto1_KatherineMurillo.Models.cls_Mantenimiento>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "ListadoMantenimiento";
 }
 
-<h1>Listado Registro Mantenimiento</h1>
+<h1>Listado Mantenimiento</h1>
 
 <p>
-    <a asp-action="AbrirCreateMatenimiento" asp-controller="RegistroMantenimiento">Crear Nuevo</a>
+    <a asp-action="AbrirCrearMantenimiento" asp-controller="RegistroMantenimiento">Crear Nuevo</a>
 </p>
-<!--Se filtran los mantenimientos por el ID del mantenimiento-->
-<form asp-action="Index" method="get" class="form-inline mb-3">
-    <div class="form-group">
-        <label for="buscarmantenimiento" class="mr-2" style="font-size: 1.1em;">Buscar Mantenimiento:</label>
-        <input type="text" id="buscarIdIbuscarmantenimientonventario" name="buscarIdInventario" class="form-control" placeholder="Ingrese el Id del mantenimiento" />
-    </div>
-    <button type="submit" class="btn btn-primary ml-2">Buscar</button>
-</form>
 
-<table class="table table-hover">
-    <thead class="thead-dark">
+<table class="table">
+    <thead>
         <tr>
             <th>
                 ID Mantenimiento
@@ -34,10 +26,10 @@
                 Fecha Agendado
             </th>
             <th>
-                Metros Propiedad 
+                Metros Propiedad
             </th>
             <th>
-                Metros Cerca Viva 
+                Metros Cerca Viva
             </th>
             <th>
                 Dias Sin Chapia
@@ -49,7 +41,7 @@
                 Tipo Zacate
             </th>
             <th>
-                Aplicacion Producto
+                Aplicación Producto
             </th>
             <th>
                 Producto Aplicado
@@ -58,7 +50,7 @@
                 Costo Chapia
             </th>
             <th>
-                Costo Aplicacion Producto
+                Costo Aplicación Producto
             </th>
             <th>
                 Estado Mantenimiento
@@ -68,7 +60,7 @@
     </thead>
     <tbody>
 @foreach (var item in Model) {
-        <tr class="table-secondary">
+        <tr>
             <td>
                 @Html.DisplayFor(modelItem => item.IdMantenimiento)
             </td>
@@ -112,8 +104,8 @@
                 @Html.DisplayFor(modelItem => item.EstadoMantenimiento)
             </td>
             <td>
-                    @Html.ActionLink("Editar", "AbrirEditMantenimiento", new { id = item.IdMantenimiento }, new { @class = "btn btn-warning" }) |
-                    @Html.ActionLink("Eliminar", "AbrirDeleteMantenimiento", new { id = item.IdMantenimiento }, new { @class = "btn btn-danger" })
+                    @Html.ActionLink("Modificar", "Edit", new { _iId_Mantenimiento = item.IdMantenimiento }, new { @class = "btn btn-warning" }) |
+                    @Html.ActionLink("Eliminar", "Delete", new { _iId_Mantenimiento = item.IdMantenimiento }, new { @class = "btn btn-danger" })
             </td>
         </tr>
 }

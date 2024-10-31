@@ -2,8 +2,9 @@
 
 namespace Proyecto1_KatherineMurillo.Models
 {
-    public class Inventario
+    public class cls_Inventario
     {
+        #region VARIABLES PUBLICAS  
         [Required(ErrorMessage = "El ID del inventario es requerido")] //Valida que no se dejen campos en blanco
         [Display(Name = "ID de inventario")]
         public int IdInventario { get; set; }
@@ -21,6 +22,16 @@ namespace Proyecto1_KatherineMurillo.Models
         public float HorasMaximas { get; set; }
         [Required(ErrorMessage = "Las horas de uso para dar mantenimiento son requeridas")] //Valida que no se dejen campos en blanco
         [Display(Name = "Horas de uso para mantenimiento")]
-        public float HorasMantenimiento { get; set; }      
+        public float HorasMantenimiento { get; set; }
+        public cls_Inventario()
+        {
+            IdInventario = 0;
+            Descripcion = string.Empty;
+            TipoMaquina = string.Empty;
+            HorasActuales = 0;
+            HorasMaximas = 0;
+            HorasMantenimiento = 0;
+        }
+        #endregion
     }
 }
