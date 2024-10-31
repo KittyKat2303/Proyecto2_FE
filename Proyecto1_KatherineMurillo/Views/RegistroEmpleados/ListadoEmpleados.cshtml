@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Proyecto1_KatherineMurillo.Models.Empleados>
+﻿@model IEnumerable<Proyecto1_KatherineMurillo.Models.cls_Empleados>
 
 @{
     ViewData["Title"] = "ListadoEmpleados";
@@ -9,6 +9,8 @@
 <p>
     <a asp-action="AbrirCrearEmpleado" asp-controller="RegistroEmpleados">Crear Nuevo</a>
 </p>
+
+<hr />
 <table class="table table-hover">
     <thead class="table-success">
         <tr>
@@ -16,7 +18,7 @@
                 Cédula
             </th>
             <th>
-                Nombre
+                Nombre Completo
             </th>
             <th>
                 Fecha Nacimiento

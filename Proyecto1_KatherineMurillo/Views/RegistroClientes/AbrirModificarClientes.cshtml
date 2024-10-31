@@ -1,17 +1,15 @@
-﻿@model Proyecto1_KatherineMurillo.Models.Clientes
+﻿@model Proyecto1_KatherineMurillo.Models.cls_Clientes
 
 @{
-    ViewData["Title"] = "Edit";
+    ViewData["Title"] = "AbrirModificarClientes";
 }
 
-<h1 style="color:darkcyan">Registros</h1>
-
-<h4 style="color:darkcyan">Editar Cliente</h4>
+<h4>Modifique el Cliente: </h4>
 
 <hr />
 <div class="row">
     <div class="col-md-4">
-        <form asp-action="EditCliente" asp-controller="RegistroClientes" method="post">
+        <form asp-action="UpdateClientes" asp-controller="RegistroClientes" method="post">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
                 <label class="control-label">Identificación:</label>
@@ -20,8 +18,8 @@
             </div>
             <div class="form-group">
                 <label class="control-label">Digite el nombre completo:</label>
-                <input asp-for="NombreCompletoClientes" class="form-control" id="nombreCompleto" required />
-                <span asp-validation-for="NombreCompletoClientes" class="text-danger"></span>
+                <input asp-for="NombreCompleto" class="form-control" id="nombreCompleto" required />
+                <span asp-validation-for="NombreCompleto" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label class="control-label">Seleccione la provincia:</label>
@@ -33,7 +31,7 @@
                     <option value="Guanacaste">Guanacaste</option>
                     <option value="Puntarenas">Puntarenas</option>
                     <option value="Limón">Limón</option>
-                </select>
+                </select>               
                 <span asp-validation-for="Provincia" class="text-danger"></span>
             </div>
             <div class="form-group">
@@ -69,10 +67,9 @@
 </div>
 
 <div>
-    <a asp-action="Index">Regresar al listado</a>
+    <a asp-action="Index">Regresar al Listado</a>
 </div>
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
-    <script src="~/js/validacionesclientes.js"></script> <!-- Se llama al js con los métodos -->
 }

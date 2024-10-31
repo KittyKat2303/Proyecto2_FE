@@ -1,25 +1,17 @@
-﻿@model IEnumerable<Proyecto1_KatherineMurillo.Models.Clientes>
+﻿@model IEnumerable<Proyecto1_KatherineMurillo.Models.cls_Clientes>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "ListadoClientes";
 }
 
-<h1>Listado Registro Clientes</h1>
+<h1>Listado Clientes</h1>
 
 <p>
-    <a asp-action="Create" asp-controller="RegistroClientes">Crear Nuevo</a>
+    <a asp-action="AbrirCrearClientes" asp-controller="RegistroClientes">Crear Nuevo</a>
 </p>
-<!--Se filtran los clientes por la identificación-->
-<form asp-action="Index" method="get" class="form-inline mb-3">
-    <div class="form-group">
-        <label for="buscarIdentificacion" class="mr-2" style="font-size: 1.1em;">Buscar Empleado:</label>
-        <input type="text" id="buscarIdentificacion" name="buscarIdentificacion" class="form-control" placeholder="Ingrese el número de identificación" />
-    </div>
-    <button type="submit" class="btn btn-primary ml-2">Buscar</button>
-</form>
 
-<table class="table table-hover">
-    <thead class="thead-dark">
+<table class="table">
+    <thead>
         <tr>
             <th>
                 Identificación
@@ -50,12 +42,12 @@
     </thead>
     <tbody>
 @foreach (var item in Model) {
-        <tr class="table-secondary">
+        <tr>
             <td>
                 @Html.DisplayFor(modelItem => item.Identificacion)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.NombreCompletoClientes)
+                @Html.DisplayFor(modelItem => item.NombreCompleto)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Provincia)
@@ -76,8 +68,8 @@
                 @Html.DisplayFor(modelItem => item.MantenimientoVerano)
             </td>
             <td>
-                @Html.ActionLink("Edit", "Edit", new { id=item.Identificacion }) |
-                @Html.ActionLink("Delete", "Delete", new { id=item.Identificacion })
+                    @Html.ActionLink("Modificar", "AbrirModificarClientes", new { _iId_Clientes = item.Identificacion }, new { @class = "btn btn-warning" }) |
+                    @Html.ActionLink("Eliminar", "AbrirEliminarClientes", new { _iId_Clientes = item.Identificacion }, new { @class = "btn btn-danger" })
             </td>
         </tr>
 }

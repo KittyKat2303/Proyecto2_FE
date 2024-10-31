@@ -2,8 +2,9 @@
 
 namespace Proyecto1_KatherineMurillo.Models
 {
-    public class Mantenimiento
+    public class cls_Mantenimiento
     {
+        #region VARIABLES PUBLICAS
         [Required(ErrorMessage = "El ID del mamtenimiento es requerido")] //Valida que no se dejen campos en blanco
         [Display(Name = "ID de mantenimiento")]
         public int IdMantenimiento { get; set; }
@@ -46,5 +47,23 @@ namespace Proyecto1_KatherineMurillo.Models
         [Required(ErrorMessage = "El estado del mantenimiento es requerido")] //Valida que no se dejen campos en blanco
         [Display(Name = "Estado del mantenimiento")]
         public string EstadoMantenimiento { get; set; }
+        public cls_Mantenimiento()
+        {
+            IdMantenimiento = 0;
+            IdCliente = 0;
+            FechaEjecutado = DateTime.MinValue;
+            FechaAgendado = DateTime.MinValue;
+            MetrosPropiedad = 0;
+            MetrosCercaViva = 0;
+            DiasSinChapia = string.Empty;
+            FechaOtraChapia = string.Empty;
+            TipoZacate = string.Empty;
+            AplicacionProducto = string.Empty;
+            ProductoAplicado = string.Empty;
+            CostoChapia = 0;
+            CostoAplicacionProducto = 0;
+            EstadoMantenimiento = string.Empty;
+        }
+        #endregion
     }
 }

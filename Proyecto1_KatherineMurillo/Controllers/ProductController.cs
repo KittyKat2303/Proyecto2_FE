@@ -1,5 +1,7 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 using Proyecto1_KatherineMurillo.Models;
+using System.Text.RegularExpressions;
 
 namespace Proyecto1_KatherineMurillo.Controllers
 {

@@ -7,7 +7,52 @@ namespace Proyecto1_KatherineMurillo.Controllers
 {
     public class RegistroEmpleados : Controller
     {
-        public static IList<Empleados> listaEmpleados = new List<Empleados>(); //Lista para almacenar los empleados
+        #region EVENTOS DE APERTURA VIEW
+        public async Task<IActionResult> ListadoEmpleados()
+        {
+            cls_GestorCNXApis Obj_CNX = new cls_GestorCNXApis();
+            List<cls_Empleados> lstResultado = await Obj_CNX.ListarEmpleados();
+            return View(lstResultado);
+        }
+        public IActionResult AbrirCrearEmpleados()
+        {
+            return View();
+        }
+        public async Task<IActionResult> AbrirModificarEmpleados(int _iId_Empleado)
+        {
+            cls_GestorCNXApis Obj_Gestor = new cls_GestorCNXApis();   //INSTANCIO OBJ DE LA CLASE GESTORCONEX
+            List<cls_Empleados> _lstResultado = await Obj_Gestor.ConsultarEmpleados(new cls_Empleados { iCedula = _iId_Empleado });
+            cls_Empleados Obj_Encontrado = _lstResultado.FirstOrDefault();  //ENCUENTRA EL PRIMER DATO DE LA LISTA
+            return View(Obj_Encontrado);
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> AbrirEliminarEmpleados(int _iId_Empleado)
+        {
+            cls_GestorCNXApis Obj_Gestor = new cls_GestorCNXApis();
+            await Obj_Gestor.EliminarEmpleados(new cls_Empleados { iCedula = _iId_Empleado });
+            return RedirectToAction("ListadoEmpleados", "RegistroEmpleados");
+        }
+        #endregion
+
+        #region EVENTOS MANTENIMIENTOS
+        [HttpPost]
+        public async Task<IActionResult> InsertEmpleados(cls_Empleados P_Entidad)
+        {
+            cls_GestorCNXApis Obj_Gestor = new cls_GestorCNXApis();
+            await Obj_Gestor.AgregarEmpleados(P_Entidad);
+            return RedirectToAction("ListadoEmpleados", "RegistroEmpleados");
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> UpdateEmpleados(cls_Empleados P_Entidad)
+        {
+            cls_GestorCNXApis Obj_Gestor = new cls_GestorCNXApis();
+            await Obj_Gestor.ModificarEmpleados(P_Entidad);
+            return RedirectToAction("ListadoEmpleados", "RegistroEmpleados");
+        }
+        #endregion
+        /*public static IList<cls_Empleados> listaEmpleados = new List<cls_Empleados>(); //Lista para almacenar los empleados
 
         // GET: RegistroEmpleados
         public ActionResult Index(string buscarCedula)
@@ -31,7 +76,7 @@ namespace Proyecto1_KatherineMurillo.Controllers
         // POST: RegistroEmpleados/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(Empleados empleadoNuevo)
+        public ActionResult Create(cls_Empleados empleadoNuevo)
         {
             try
             {  
@@ -69,7 +114,7 @@ namespace Proyecto1_KatherineMurillo.Controllers
         {
             if (listaEmpleados.Any()) //Verifica si la lista contiene algún elemento
             {   //Busca el primero en la lista que coincida con el ID dado
-                Empleados empleadoEditar = listaEmpleados.FirstOrDefault(empleado => empleado.Cedula == id);
+                cls_Empleados empleadoEditar = listaEmpleados.FirstOrDefault(empleado => empleado.Cedula == id);
                 return View(empleadoEditar);
             }
             return View();
@@ -78,13 +123,13 @@ namespace Proyecto1_KatherineMurillo.Controllers
         // POST: RegistroEmpleados/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(Empleados empleadoEditado)
+        public ActionResult Edit(cls_Empleados empleadoEditado)
         {
             try
             {
                 if (listaEmpleados.Any()) //Verifica si la lista contiene algún elemento
                 {   //Busca el primero en la lista que coincida con lo editado
-                    Empleados empleadoEditar = listaEmpleados.FirstOrDefault(empleado => empleado.Cedula == empleadoEditado.Cedula);
+                    cls_Empleados empleadoEditar = listaEmpleados.FirstOrDefault(empleado => empleado.Cedula == empleadoEditado.Cedula);
                     if (empleadoEditar != null) //Si se encuentra y no es nulo)
                     {   //Actualiza los campos con los valores editados
                         empleadoEditar.Cedula = empleadoEditado.Cedula;
@@ -106,7 +151,7 @@ namespace Proyecto1_KatherineMurillo.Controllers
         // GET: RegistroEmpleados/Delete/5
         public ActionResult Delete(int id)
         {   //Busca el primero en la lista que coincida con el ID dado
-            Empleados empleadoEliminar = listaEmpleados.FirstOrDefault(empleado => empleado.Cedula == id);
+            cls_Empleados empleadoEliminar = listaEmpleados.FirstOrDefault(empleado => empleado.Cedula == id);
             if (empleadoEliminar == null) //Verifica si no es nulo 
             {
                 return RedirectToAction(nameof(Index));
@@ -117,11 +162,11 @@ namespace Proyecto1_KatherineMurillo.Controllers
         // POST: RegistroEmpleados/Delete/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Delete(Empleados empleadoEliminado)
+        public ActionResult Delete(cls_Empleados empleadoEliminado)
         {
             try
             {   //Busca el primero en la lista que coincida con lo que se va a eliminar
-                Empleados empleadoEliminar = listaEmpleados.FirstOrDefault(empleado => empleado.Cedula == empleadoEliminado.Cedula);
+                cls_Empleados empleadoEliminar = listaEmpleados.FirstOrDefault(empleado => empleado.Cedula == empleadoEliminado.Cedula);
                 if (empleadoEliminar != null) //Verifica si no es nulo 
                 {
                     listaEmpleados.Remove(empleadoEliminar); //Si se encontró lo elimina de la lista 
@@ -139,52 +184,6 @@ namespace Proyecto1_KatherineMurillo.Controllers
         {
             //Comprobar si la cédula ya está en la lista de empleados
             return listaEmpleados.Any(e => e.Cedula == cedula);
-        }
-
-        #region EVENTOS DE APERTURA VIEW
-        public async Task<IActionResult> ListadoEmpleados()
-        {
-            cls_GestorCNXApis Obj_CNX = new cls_GestorCNXApis();
-            List<Empleados> lstResultado = await Obj_CNX.ListarEmpleado();
-            return View(lstResultado);
-        }
-        public IActionResult AbrirCrearEmpleado()
-        {
-            return View();
-        }
-        public async Task<IActionResult> AbrirModificarEmpleado(int _iId_Empleado)
-        {
-            cls_GestorCNXApis Obj_Gestor = new cls_GestorCNXApis();   //INSTANCIO OBJ DE LA CLASE GESTORCONEX
-            List<Empleados> _lstResultado = await Obj_Gestor.ConsultarEmpleado(new Empleados { iCedula = _iId_Empleado });
-            Empleados Obj_Encontrado = _lstResultado.FirstOrDefault();  //ENCUENTRA EL PRIMER DATO DE LA LISTA
-            return View(Obj_Encontrado);
-        }
-        
-        [HttpGet]
-        public async Task<IActionResult> AbrirEliminarEmpleado(int _iId_Empleado)
-        {
-            cls_GestorCNXApis Obj_Gestor = new cls_GestorCNXApis();
-            await Obj_Gestor.EliminarEmpleado(new Empleados { iCedula = _iId_Empleado });
-            return RedirectToAction("ListadoEmpleados", "RegistroEmpleados");
-        }
-        #endregion
-
-        #region EVENTOS MANTENIMIENTOS
-        [HttpPost]
-        public async Task<IActionResult> InsertEmpleado(Empleados P_Entidad)
-        {
-            cls_GestorCNXApis Obj_Gestor = new cls_GestorCNXApis();
-            await Obj_Gestor.AgregarEmpleado(P_Entidad);
-            return RedirectToAction("ListadoEmpleados", "RegistroEmpleados");
-        }
-
-        [HttpPost]
-        public async Task<IActionResult> UpdateEmpleado(Empleados P_Entidad)
-        {
-            cls_GestorCNXApis Obj_Gestor = new cls_GestorCNXApis();
-            await Obj_Gestor.ModificarEmpleado(P_Entidad);
-            return RedirectToAction("ListadoEmpleados", "RegistroEmpleados");
-        }
-        #endregion
+        }*/
     }
 }
