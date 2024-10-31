@@ -14,11 +14,21 @@ namespace Proyecto1_KatherineMurillo.Controllers
             List<cls_Empleados> lstResultado = await Obj_CNX.ListarEmpleados();
             return View(lstResultado);
         }
-        public IActionResult AbrirCrearEmpleados()
+        public async Task<IActionResult> FiltrarEmpleado(string _sIdBuscar)
+        {
+            cls_GestorCNXApis Obj_CNX = new cls_GestorCNXApis();   //INSTANCIO OBJ DE LA CLASE GESTORCONEX
+            List<cls_Empleados> lstResultado = await Obj_CNX.ListarEmpleados();
+            if (!string.IsNullOrEmpty(_sIdBuscar))
+            {
+                lstResultado = lstResultado.FindAll(item => item.iCedula.ToString().Contains(_sIdBuscar, System.StringComparison.CurrentCultureIgnoreCase)).ToList();
+            }
+            return View(lstResultado);
+        }
+        public IActionResult AbrirCrearEmpleado()
         {
             return View();
         }
-        public async Task<IActionResult> AbrirModificarEmpleados(int _iId_Empleado)
+        public async Task<IActionResult> AbrirModificarEmpleado(int _iId_Empleado)
         {
             cls_GestorCNXApis Obj_Gestor = new cls_GestorCNXApis();   //INSTANCIO OBJ DE LA CLASE GESTORCONEX
             List<cls_Empleados> _lstResultado = await Obj_Gestor.ConsultarEmpleados(new cls_Empleados { iCedula = _iId_Empleado });
@@ -27,7 +37,7 @@ namespace Proyecto1_KatherineMurillo.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> AbrirEliminarEmpleados(int _iId_Empleado)
+        public async Task<IActionResult> AbrirEliminarEmpleado(int _iId_Empleado)
         {
             cls_GestorCNXApis Obj_Gestor = new cls_GestorCNXApis();
             await Obj_Gestor.EliminarEmpleados(new cls_Empleados { iCedula = _iId_Empleado });
