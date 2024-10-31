@@ -7,7 +7,6 @@ for (i = 0; i < input.length; i++) {
     input[i].setAttribute('size', input[i].getAttribute('placeholder').length);
 }
 
-
 function validarFormulario() {
 
     const feedbackElement = document.getElementById('estadoFeedback');
