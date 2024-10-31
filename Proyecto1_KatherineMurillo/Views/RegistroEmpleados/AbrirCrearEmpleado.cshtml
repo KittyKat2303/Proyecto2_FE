@@ -1,7 +1,7 @@
 ﻿@model Proyecto1_KatherineMurillo.Models.cls_Empleados
 
 @{
-    ViewData["Title"] = "AbrirCrearEmpleado";
+    ViewData["Title"] = "AbrirCrearEmpleados";
 }
 
 <h4>Ingrese el nuevo Empleado:</h4>
@@ -9,7 +9,7 @@
 <hr />
 <div class="row">
     <div class="col-md-4">
-        <form asp-action="InsertEmpleado" asp-controller="RegistroEmpleados" method="post">
+        <form asp-action="InsertEmpleados" asp-controller="RegistroEmpleados" method="post">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
                 <label class="control-label">Digite la cédula: </label>
@@ -53,5 +53,5 @@
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
-   
+
 }
