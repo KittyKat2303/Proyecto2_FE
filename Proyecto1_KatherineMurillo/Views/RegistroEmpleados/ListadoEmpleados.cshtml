@@ -9,7 +9,15 @@
 <p>
     <a asp-action="AbrirCrearEmpleado" asp-controller="RegistroEmpleados">Crear Nuevo</a>
 </p>
-
+<form asp-action="FiltrarEmpleado" asp-controller="RegistroEmpleados" method="get">
+    @* ASOCIO LA ACCION DEL CONTROLLLER ASP-ACTION Y LE ASIGNO EL CONTROLLER ASP-CONTROLLER *@
+    <div>
+        <label>Buscar Cédula Empleado</label>
+        <input name="_sIdBuscar" id="estado" placeholder="buscar por cedula empleado" type="search" required/> @*EL NAME COINCIDE CON EL VALOR DEL STRING QUE RECIBE*@
+        <span id="estadoFeedback" style="color: red;"></span>
+        <button type="submit" class="button btn-outline-primary font-weight-bold"> <span class="spinner-border spinner-border-sm"></span>Filtrar</button>
+    </div>
+</form>
 <hr />
 <table class="table table-hover">
     <thead class="table-success">

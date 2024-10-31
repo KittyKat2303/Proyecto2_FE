@@ -113,14 +113,14 @@ namespace Proyecto1_KatherineMurillo.Controllers
         }
         public async Task<bool> AgregarEmpleados(cls_Empleados P_Entidad)
         {
-            string _sRutaAPI = @"api/Empleados/AgregarEmpleados";    //VA A CONCATENAR A LA RUTA BASE     
+            string _sRutaAPI = @"api/Empleados/AgregarEmpleado";    //VA A CONCATENAR A LA RUTA BASE     
 
             HttpResponseMessage resultadoconsumo = await hcCNXApi.PostAsJsonAsync(_sRutaAPI, P_Entidad);
             return resultadoconsumo.IsSuccessStatusCode;
         }
         public async Task<bool> ModificarEmpleados(cls_Empleados P_Entidad)
         {
-            string _sRutaAPI = @"api/Empleados/ModificarEmpleados";    //VA A CONCATENAR A LA RUTA BASE     
+            string _sRutaAPI = @"api/Empleados/ModificarEmpleado";    //VA A CONCATENAR A LA RUTA BASE     
 
             hcCNXApi.DefaultRequestHeaders.Add("id", P_Entidad.iCedula.ToString());        //HAY UN PARAMETRO "id" DEL CONTROLLER DE LA SOLUCION BASE
 
@@ -129,7 +129,7 @@ namespace Proyecto1_KatherineMurillo.Controllers
         }
         public async Task<bool> EliminarEmpleados(cls_Empleados P_Entidad)
         {
-            string _sRutaAPI = @"api/Empleados/EliminarEmpleados";    //VA A CONCATENAR A LA RUTA BASE     
+            string _sRutaAPI = @"api/Empleados/EliminarEmpleado";    //VA A CONCATENAR A LA RUTA BASE     
 
             hcCNXApi.DefaultRequestHeaders.Add("id", P_Entidad.iCedula.ToString());        //HAY UN PARAMETRO "id" DEL CONTROLLER DE LA SOLUCION BASE
 
