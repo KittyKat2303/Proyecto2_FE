@@ -13,7 +13,7 @@
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
                 <label class="control-label">Digite la cédula: </label>
-                <input asp-for="iCedula" maxlength="9" type="text" class="form-control" inputmode="numeric" id="Cedula" pattern="[0-9]*" />
+                <input asp-for="iCedula" maxlength="9" class="form-control" inputmode="numeric" id="Cedula" pattern="[0-9]*" />
                 <span asp-validation-for="iCedula" class="text-danger"></span>
             </div>
             <div class="form-group">
@@ -38,7 +38,7 @@
             </div>
             <div class="form-group">
                 <label class="control-label">Digite el salario por hora: </label>
-                <input asp-for="fSalarioHora" type="text" class="form-control" inputmode="decimal" />
+                <input asp-for="fSalarioHora" class="form-control" id="SalarioHora" inputmode="decimal" />
                 <span asp-validation-for="fSalarioHora" class="text-danger"></span>
             </div>         
             <div class="form-group">
@@ -53,5 +53,5 @@
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
-
+    <script src="~/js/validacionesempleados.js"></script>
 }

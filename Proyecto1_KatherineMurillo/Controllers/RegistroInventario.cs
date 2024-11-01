@@ -13,7 +13,7 @@ namespace Proyecto1_KatherineMurillo.Controllers
             cls_GestorCNXApis Obj_CNX = new cls_GestorCNXApis();
             List<cls_Inventario> lstResultado = await Obj_CNX.ListarInventario();
             return View(lstResultado);
-        }
+        }     
         public IActionResult AbrirCrearInventario()
         {
             return View();

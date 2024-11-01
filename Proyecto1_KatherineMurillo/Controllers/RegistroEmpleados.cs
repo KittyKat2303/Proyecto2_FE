@@ -62,6 +62,7 @@ namespace Proyecto1_KatherineMurillo.Controllers
             return RedirectToAction("ListadoEmpleados", "RegistroEmpleados");
         }
         #endregion
+     
         /*public static IList<cls_Empleados> listaEmpleados = new List<cls_Empleados>(); //Lista para almacenar los empleados
 
         // GET: RegistroEmpleados
