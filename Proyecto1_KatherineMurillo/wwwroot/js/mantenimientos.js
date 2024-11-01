@@ -98,5 +98,39 @@ function mostrarProximaChapia() {
     //Muestra el resultado
     document.getElementById('result').value = `Fecha próxima chapia: ${proximaChapia}`;
 }
+function calcularCostos() {
+    // Obtiene los valores del input
+    const metrosPropiedad = parseFloat(document.getElementById("MetrosPropiedad").value) || 0;
+    const metrosCercaViva = parseFloat(document.getElementById("MetrosCercaViva").value) || 0;
+    const costoChapia = parseFloat(document.getElementById("CostoChapia").value) || 0;
+    const costoProducto = parseFloat(document.getElementById("CostoProducto").value) || 0;
+
+    // Calcula Precio Costo Chapia: (A*C) + (B*C) + IVA(13%)
+    const precioCostoChapia = ((metrosPropiedad * costoChapia) + (metrosCercaViva * costoChapia)) * 1.13;
+    document.getElementById("PrecioCostoChapia").value = precioCostoChapia.toFixed(2);
+
+    // Verifica si aplica el producto
+    const aplicaProducto = document.getElementById("AplicacionProducto").value === "Sí";
+    let precioAplicacionProducto = 0;
+    let precioTotal;
+
+    if (aplicaProducto) {
+        // Calcula Precio Aplicación Producto: Precio Costo Chapia * D + IVA(13%)
+        precioAplicacionProducto = precioCostoChapia * costoProducto * 1.13;
+        document.getElementById("PrecioAplicacionProducto").value = precioAplicacionProducto.toFixed(2);
+
+        // Calcula Precio total con Aplicación Producto
+        precioTotal = (((metrosPropiedad * (costoChapia + costoProducto)) + (metrosCercaViva * (costoChapia + costoProducto))) * 1.13).toFixed(2);
+        document.getElementById("PrecioTotalConAplicacion").value = precioTotal;
+    } else {
+        // Si no aplica producto, coloca Precio total sin Aplicación Producto
+        precioTotal = precioCostoChapia.toFixed(2);
+        document.getElementById("PrecioAplicacionProducto").value = "0.00";
+        document.getElementById("PrecioTotalConAplicacion").value = precioTotal;
+    }
+}
+
+
+
 
 
