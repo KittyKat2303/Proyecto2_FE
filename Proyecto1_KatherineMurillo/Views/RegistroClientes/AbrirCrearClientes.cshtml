@@ -13,18 +13,18 @@
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
                 <label class="control-label">Digite la identificación:</label>
-                <input asp-for="Identificacion" id="identificacionCliente" onkeypress="return soloNumeros(event)" maxlength="9" class="form-control" />
+                <input asp-for="identificacion" id="identificacionCliente" onkeypress="return soloNumeros(event)" maxlength="9" type="text" class="form-control" />
                 <span id="alerta" style="color: red; display: none;">Solo se permiten números</span>
-                <span asp-validation-for="Identificacion" class="text-danger"></span>
+                <span asp-validation-for="identificacion" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label class="control-label">Digite el nombre completo:</label>
-                <input asp-for="NombreCompleto" id="nombreCompleto" class="form-control" required />
-                <span asp-validation-for="NombreCompleto" class="text-danger"></span>
+                <input asp-for="nombreCompleto" id="nombreCompleto" class="form-control" required />
+                <span asp-validation-for="nombreCompleto" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label class="control-label">Seleccione la provincia:</label>
-                <select asp-for="Provincia" class="form-control" id="provincia">
+                <select asp-for="provincia" class="form-control" id="provincia">
                     <option value="San José" selected>San José</option>
                     <option value="Alajuela">Alajuela</option>
                     <option value="Cartago">Cartago</option>
@@ -33,32 +33,32 @@
                     <option value="Puntarenas">Puntarenas</option>
                     <option value="Limón">Limón</option>
                 </select>
-                <span asp-validation-for="Provincia" class="text-danger"></span>
+                <span asp-validation-for="provincia" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label class="control-label">Seleccione el cantón:</label>
-                <select asp-for="Canton" class="form-control" id="canton"></select>
-                <span asp-validation-for="Canton" class="text-danger"></span>
+                <select asp-for="canton" class="form-control" id="canton"></select>
+                <span asp-validation-for="canton" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label class="control-label">Seleccione el distrito:</label>
-                <select asp-for="Distrito" class="form-control" id="distrito"></select>
-                <span asp-validation-for="Distrito" class="text-danger"></span>
+                <select asp-for="distrito" class="form-control" id="distrito"></select>
+                <span asp-validation-for="distrito" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label class="control-label">Digite la dirección exacta:</label>
-                <input asp-for="DireccionExacta" class="form-control" />
-                <span asp-validation-for="DireccionExacta" class="text-danger"></span>
+                <input asp-for="direccionExacta" class="form-control" />
+                <span asp-validation-for="direccionExacta" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label class="control-label">Seleccione el mantenimiento en invierno:</label>
-                <select asp-for="MantenimientoInvierno" class="form-control" id="manteInvierno" asp-items="@(new SelectList(new[] { 15, 30 }))"></select>
-                <span asp-validation-for="MantenimientoInvierno" class="text-danger"></span>
+                <select asp-for="mantenimientoInvierno" class="form-control" id="manteInvierno" asp-items="@(new SelectList(new[] { 15, 30 }))"></select>
+                <span asp-validation-for="mantenimientoInvierno" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label class="control-label">Seleccione el mantenimiento en verano:</label>
-                <select asp-for="MantenimientoVerano" class="form-control" asp-items="@(new SelectList(new[] { 15, 30 }))"></select>
-                <span asp-validation-for="MantenimientoVerano" class="text-danger"></span>
+                <select asp-for="mantenimientoVerano" class="form-control" asp-items="@(new SelectList(new[] { 15, 30 }))"></select>
+                <span asp-validation-for="mantenimientoVerano" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <input type="submit" value="Crear" class="btn btn-primary" />
@@ -68,7 +68,7 @@
 </div>
 
 <div>
-    <a asp-action="Index">Regresar al Listado</a>
+    <a asp-action="ListadoClientes" asp-controller="RegistroClientes">Regresar al Listado</a>
 </div>
 
 @section Scripts {

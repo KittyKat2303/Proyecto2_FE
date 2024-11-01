@@ -213,7 +213,7 @@ namespace Proyecto1_KatherineMurillo.Controllers
             List<cls_Clientes> Obj_lstResultado = new List<cls_Clientes>();
             string _sRutaAPI = @"api/Clientes/ConsultarClientes";
 
-            hcCNXApi.DefaultRequestHeaders.Add("id", P_Entidad.Identificacion.ToString());
+            hcCNXApi.DefaultRequestHeaders.Add("id", P_Entidad.identificacion.ToString());
 
             HttpResponseMessage resultadoconsumo = await hcCNXApi.GetAsync(_sRutaAPI);
             if (resultadoconsumo.IsSuccessStatusCode)
@@ -234,7 +234,7 @@ namespace Proyecto1_KatherineMurillo.Controllers
         {
             string _sRutaAPI = @"api/Clientes/ModificarClientes";    //VA A CONCATENAR A LA RUTA BASE     
 
-            hcCNXApi.DefaultRequestHeaders.Add("id", P_Entidad.Identificacion.ToString());        //HAY UN PARAMETRO "id" DEL CONTROLLER DE LA SOLUCION BASE
+            hcCNXApi.DefaultRequestHeaders.Add("id", P_Entidad.identificacion.ToString());        //HAY UN PARAMETRO "id" DEL CONTROLLER DE LA SOLUCION BASE
 
             HttpResponseMessage resultadoconsumo = await hcCNXApi.PutAsJsonAsync(_sRutaAPI, P_Entidad);
             return resultadoconsumo.IsSuccessStatusCode;
@@ -243,7 +243,7 @@ namespace Proyecto1_KatherineMurillo.Controllers
         {
             string _sRutaAPI = @"api/Clientes/EliminarClientes";    //VA A CONCATENAR A LA RUTA BASE     
 
-            hcCNXApi.DefaultRequestHeaders.Add("id", P_Entidad.Identificacion.ToString());        //HAY UN PARAMETRO "id" DEL CONTROLLER DE LA SOLUCION BASE
+            hcCNXApi.DefaultRequestHeaders.Add("id", P_Entidad.identificacion.ToString());        //HAY UN PARAMETRO "id" DEL CONTROLLER DE LA SOLUCION BASE
 
             HttpResponseMessage resultadoconsumo = await hcCNXApi.DeleteAsync(_sRutaAPI);
             return resultadoconsumo.IsSuccessStatusCode;

@@ -21,7 +21,7 @@ namespace Proyecto1_KatherineMurillo.Controllers
         public async Task<IActionResult> AbrirModificarClientes(int _iId_Clientes)
         {
             cls_GestorCNXApis Obj_Gestor = new cls_GestorCNXApis();   //INSTANCIO OBJ DE LA CLASE GESTORCONEX
-            List<cls_Clientes> _lstResultado = await Obj_Gestor.ConsultarClientes(new cls_Clientes { Identificacion = _iId_Clientes });
+            List<cls_Clientes> _lstResultado = await Obj_Gestor.ConsultarClientes(new cls_Clientes { identificacion = _iId_Clientes });
             cls_Clientes Obj_Encontrado = _lstResultado.FirstOrDefault();  //ENCUENTRA EL PRIMER DATO DE LA LISTA
             return View(Obj_Encontrado);
         }
@@ -30,7 +30,7 @@ namespace Proyecto1_KatherineMurillo.Controllers
         public async Task<IActionResult> AbrirEliminarClientes(int _iId_Clientes)
         {
             cls_GestorCNXApis Obj_Gestor = new cls_GestorCNXApis();
-            await Obj_Gestor.EliminarClientes(new cls_Clientes { Identificacion = _iId_Clientes });
+            await Obj_Gestor.EliminarClientes(new cls_Clientes { identificacion = _iId_Clientes });
             return RedirectToAction("ListadoClientes", "RegistroClientes");
         }
         #endregion

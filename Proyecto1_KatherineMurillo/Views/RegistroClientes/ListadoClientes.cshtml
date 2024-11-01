@@ -44,32 +44,32 @@
 @foreach (var item in Model) {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.Identificacion)
+                @Html.DisplayFor(modelItem => item.identificacion)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.NombreCompleto)
+                @Html.DisplayFor(modelItem => item.nombreCompleto)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Provincia)
+                @Html.DisplayFor(modelItem => item.provincia)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Canton)
+                @Html.DisplayFor(modelItem => item.canton)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Distrito)
+                @Html.DisplayFor(modelItem => item.distrito)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.DireccionExacta)
+                @Html.DisplayFor(modelItem => item.direccionExacta)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.MantenimientoInvierno)
+                @Html.DisplayFor(modelItem => item.mantenimientoInvierno)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.MantenimientoVerano)
+                @Html.DisplayFor(modelItem => item.mantenimientoVerano)
             </td>
             <td>
-                    @Html.ActionLink("Modificar", "AbrirModificarClientes", new { _iId_Clientes = item.Identificacion }, new { @class = "btn btn-warning" }) |
-                    @Html.ActionLink("Eliminar", "AbrirEliminarClientes", new { _iId_Clientes = item.Identificacion }, new { @class = "btn btn-danger" })
+                    @Html.ActionLink("Modificar", "AbrirModificarClientes", new { _iId_Clientes = item.identificacion }, new { @class = "btn btn-warning" }) |
+                    @Html.ActionLink("Eliminar", "AbrirEliminarClientes", new { _iId_Clientes = item.identificacion }, new { @class = "btn btn-danger" })
             </td>
         </tr>
 }
