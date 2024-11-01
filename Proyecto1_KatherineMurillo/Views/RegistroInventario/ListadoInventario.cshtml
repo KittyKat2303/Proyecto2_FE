@@ -7,11 +7,11 @@
 <h1>Listado Inventario</h1>
 
 <p>
-    <a asp-action="AbrirCrearInventario" asp-controller="RegistroEmpleados" >Crear Nuevo</a>
+    <a asp-action="AbrirCrearInventario" asp-controller="RegistroInventario" >Crear Nuevo</a>
 </p>
 
-<table class="table">
-    <thead>
+<table class="table table-hover">
+    <thead class="table-success">
         <tr>
             <th>
                 ID Inventario
@@ -38,26 +38,26 @@
 @foreach (var item in Model) {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.IdInventario)
+                @Html.DisplayFor(modelItem => item.idInventario)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Descripcion)
+                @Html.DisplayFor(modelItem => item.descripcion)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.TipoMaquina)
+                @Html.DisplayFor(modelItem => item.tipoMaquina)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.HorasActuales)
+                @Html.DisplayFor(modelItem => item.horasActuales)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.HorasMaximas)
+                @Html.DisplayFor(modelItem => item.horasMaximas)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.HorasMantenimiento)
+                @Html.DisplayFor(modelItem => item.horasMantenimiento)
             </td>
             <td>
-                    @Html.ActionLink("Modificar", "AbrirModificarInventario", new { _id_Inventario = item.IdInventario }, new { @class = "btn btn-warning" }) |
-                    @Html.ActionLink("Eliminar", "AbrirEliminarInventario", new { _id_Inventario = item.IdInventario }, new { @class = "btn btn-danger" }) |
+                    @Html.ActionLink("Modificar", "AbrirModificarInventario", new { _iId_Inventario = item.idInventario }, new { @class = "btn btn-warning" }) |
+                    @Html.ActionLink("Eliminar", "AbrirEliminarInventario", new { _iId_Inventario = item.idInventario }, new { @class = "btn btn-danger" }) |
             </td>
         </tr>
 }

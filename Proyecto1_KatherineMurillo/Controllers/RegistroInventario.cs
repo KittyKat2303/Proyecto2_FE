@@ -21,7 +21,7 @@ namespace Proyecto1_KatherineMurillo.Controllers
         public async Task<IActionResult> AbrirModificarInventario(int _iId_Inventario)
         {
             cls_GestorCNXApis Obj_Gestor = new cls_GestorCNXApis();   //INSTANCIO OBJ DE LA CLASE GESTORCONEX
-            List<cls_Inventario> _lstResultado = await Obj_Gestor.ConsultarInventario(new cls_Inventario { IdInventario = _iId_Inventario });
+            List<cls_Inventario> _lstResultado = await Obj_Gestor.ConsultarInventario(new cls_Inventario { idInventario = _iId_Inventario });
             cls_Inventario Obj_Encontrado = _lstResultado.FirstOrDefault();  //ENCUENTRA EL PRIMER DATO DE LA LISTA
             return View(Obj_Encontrado);
         }
@@ -30,7 +30,7 @@ namespace Proyecto1_KatherineMurillo.Controllers
         public async Task<IActionResult> AbrirEliminarInventario(int _iId_Inventario)
         {
             cls_GestorCNXApis Obj_Gestor = new cls_GestorCNXApis();
-            await Obj_Gestor.EliminarInventario(new cls_Inventario { IdInventario = _iId_Inventario });
+            await Obj_Gestor.EliminarInventario(new cls_Inventario { idInventario = _iId_Inventario });
             return RedirectToAction("ListadoInventario", "RegistroInventario");
         }
         #endregion

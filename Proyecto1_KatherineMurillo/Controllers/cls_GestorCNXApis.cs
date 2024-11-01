@@ -157,7 +157,7 @@ namespace Proyecto1_KatherineMurillo.Controllers
             List<cls_Inventario> Obj_lstResultado = new List<cls_Inventario>();
             string _sRutaAPI = @"api/Inventario/ConsultarInventario";
 
-            hcCNXApi.DefaultRequestHeaders.Add("id", P_Entidad.IdInventario.ToString());
+            hcCNXApi.DefaultRequestHeaders.Add("id", P_Entidad.idInventario.ToString());
 
             HttpResponseMessage resultadoconsumo = await hcCNXApi.GetAsync(_sRutaAPI);
             if (resultadoconsumo.IsSuccessStatusCode)
@@ -178,7 +178,7 @@ namespace Proyecto1_KatherineMurillo.Controllers
         {
             string _sRutaAPI = @"api/Inventario/ModificarInventario";    //VA A CONCATENAR A LA RUTA BASE     
 
-            hcCNXApi.DefaultRequestHeaders.Add("id", P_Entidad.IdInventario.ToString());        //HAY UN PARAMETRO "id" DEL CONTROLLER DE LA SOLUCION BASE
+            hcCNXApi.DefaultRequestHeaders.Add("id", P_Entidad.idInventario.ToString());        //HAY UN PARAMETRO "id" DEL CONTROLLER DE LA SOLUCION BASE
 
             HttpResponseMessage resultadoconsumo = await hcCNXApi.PutAsJsonAsync(_sRutaAPI, P_Entidad);
             return resultadoconsumo.IsSuccessStatusCode;
@@ -187,7 +187,7 @@ namespace Proyecto1_KatherineMurillo.Controllers
         {
             string _sRutaAPI = @"api/Inventario/EliminarInventario";    //VA A CONCATENAR A LA RUTA BASE     
 
-            hcCNXApi.DefaultRequestHeaders.Add("id", P_Entidad.IdInventario.ToString());        //HAY UN PARAMETRO "id" DEL CONTROLLER DE LA SOLUCION BASE
+            hcCNXApi.DefaultRequestHeaders.Add("id", P_Entidad.idInventario.ToString());        //HAY UN PARAMETRO "id" DEL CONTROLLER DE LA SOLUCION BASE
 
             HttpResponseMessage resultadoconsumo = await hcCNXApi.DeleteAsync(_sRutaAPI);
             return resultadoconsumo.IsSuccessStatusCode;

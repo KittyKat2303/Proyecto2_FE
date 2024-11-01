@@ -13,34 +13,34 @@
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
                 <label class="control-label">Digite el Id del inventario:</label>
-                <input asp-for="IdInventario" maxlength="9" class="form-control" inputmode="numeric" id="IdInventario" pattern="[0-9]*" />
-                <span asp-validation-for="IdInventario" class="text-danger"></span>
+                <input asp-for="idInventario" maxlength="9" class="form-control" inputmode="numeric" id="IdInventario" pattern="[0-9]*" />
+                <span asp-validation-for="idInventario" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label class="control-label">Digite la descripción:</label>
-                <input asp-for="Descripcion" class="form-control" id="descripcion" required />
-                <span asp-validation-for="Descripcion" class="text-danger"></span>
+                <input asp-for="descripcion" class="form-control" id="descripcion" required />
+                <span asp-validation-for="descripcion" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label class="control-label">Seleccione el tipo de máquina:</label>
-                <select asp-for="TipoMaquina" class="form-control" asp-items="@(new SelectList(new[] { "Shindaiwa",
+                <select asp-for="tipoMaquina" class="form-control" asp-items="@(new SelectList(new[] { "Shindaiwa",
                 "Corta setos", "Motosierra", "Rastrillo", "Carretillo", "Otro" }))"></select>
-                <span asp-validation-for="TipoMaquina" class="text-danger"></span>
+                <span asp-validation-for="tipoMaquina" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label class="control-label">Digite las horas de uso actuales:</label>
-                <input asp-for="HorasActuales" class="form-control" inputmode="decimal" />
-                <span asp-validation-for="HorasActuales" class="text-danger"></span>
+                <input asp-for="horasActuales" class="form-control" inputmode="decimal" />
+                <span asp-validation-for="horasActuales" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label class="control-label">Digite las horas de uso máximas:</label>
-                <input asp-for="HorasMaximas" class="form-control" inputmode="decimal" />
-                <span asp-validation-for="HorasMaximas" class="text-danger"></span>
+                <input asp-for="horasMaximas" class="form-control" inputmode="decimal" />
+                <span asp-validation-for="horasMaximas" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label class="control-label">Digite las horas de uso para dar mantenimiento:</label>
-                <input asp-for="HorasMantenimiento" class="form-control" inputmode="decimal" />
-                <span asp-validation-for="HorasMantenimiento" class="text-danger"></span>
+                <input asp-for="horasMantenimiento" class="form-control" inputmode="decimal" />
+                <span asp-validation-for="horasMantenimiento" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <input type="submit" value="Crear" class="btn btn-primary" />
@@ -50,7 +50,7 @@
 </div>
 
 <div>
-    <a asp-action="Index">Regresar al Listado</a>
+    <a asp-action="ListadoInventario" asp-controller="RegistroInventario">Regresar al Listado</a>
 </div>
 
 @section Scripts {
