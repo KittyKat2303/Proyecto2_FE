@@ -21,7 +21,7 @@ namespace Proyecto1_KatherineMurillo.Controllers
         public async Task<IActionResult> AbrirModificarMantenimiento(int _iId_Mantenimiento)
         {
             cls_GestorCNXApis Obj_Gestor = new cls_GestorCNXApis();   //INSTANCIO OBJ DE LA CLASE GESTORCONEX
-            List<cls_Mantenimiento> _lstResultado = await Obj_Gestor.ConsultarMantenimiento(new cls_Mantenimiento { IdMantenimiento = _iId_Mantenimiento });
+            List<cls_Mantenimiento> _lstResultado = await Obj_Gestor.ConsultarMantenimiento(new cls_Mantenimiento { idMantenimiento = _iId_Mantenimiento });
             cls_Mantenimiento Obj_Encontrado = _lstResultado.FirstOrDefault();  //ENCUENTRA EL PRIMER DATO DE LA LISTA
             return View(Obj_Encontrado);
         }
@@ -30,7 +30,7 @@ namespace Proyecto1_KatherineMurillo.Controllers
         public async Task<IActionResult> AbrirEliminarMantenimiento(int _iId_Mantenimiento)
         {
             cls_GestorCNXApis Obj_Gestor = new cls_GestorCNXApis();
-            await Obj_Gestor.EliminarMantenimiento(new cls_Mantenimiento { IdMantenimiento = _iId_Mantenimiento });
+            await Obj_Gestor.EliminarMantenimiento(new cls_Mantenimiento { idMantenimiento = _iId_Mantenimiento });
             return RedirectToAction("ListadoMantenimiento", "RegistroMantenimiento");
         }
         #endregion

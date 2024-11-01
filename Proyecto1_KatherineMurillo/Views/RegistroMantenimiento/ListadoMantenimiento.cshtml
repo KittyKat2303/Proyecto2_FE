@@ -62,50 +62,50 @@
 @foreach (var item in Model) {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.IdMantenimiento)
+                @Html.DisplayFor(modelItem => item.idMantenimiento)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.IdCliente)
+                @Html.DisplayFor(modelItem => item.idCliente)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.FechaEjecutado)
+                @Html.DisplayFor(modelItem => item.fechaEjecutado)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.FechaAgendado)
+                @Html.DisplayFor(modelItem => item.fechaAgendado)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.MetrosPropiedad)
+                @Html.DisplayFor(modelItem => item.metrosPropiedad)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.MetrosCercaViva)
+                @Html.DisplayFor(modelItem => item.metrosCercaViva)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.DiasSinChapia)
+                @Html.DisplayFor(modelItem => item.diasSinChapia)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.FechaOtraChapia)
+                @Html.DisplayFor(modelItem => item.fechaOtraChapia)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.TipoZacate)
+                @Html.DisplayFor(modelItem => item.tipoZacate)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.AplicacionProducto)
+                @Html.DisplayFor(modelItem => item.aplicacionProducto)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.ProductoAplicado)
+                @Html.DisplayFor(modelItem => item.productoAplicado)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.CostoChapia)
+                @Html.DisplayFor(modelItem => item.costoChapia)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.CostoAplicacionProducto)
+                @Html.DisplayFor(modelItem => item.costoAplicacionProducto)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.EstadoMantenimiento)
+                @Html.DisplayFor(modelItem => item.estadoMantenimiento)
             </td>
             <td>
-                    @Html.ActionLink("Modificar", "Edit", new { _iId_Mantenimiento = item.IdMantenimiento }, new { @class = "btn btn-warning" }) |
-                    @Html.ActionLink("Eliminar", "Delete", new { _iId_Mantenimiento = item.IdMantenimiento }, new { @class = "btn btn-danger" })
+                    @Html.ActionLink("Modificar", "AbrirModificarMantenimiento", new { _iId_Mantenimiento = item.idMantenimiento }, new { @class = "btn btn-warning" }) |
+                    @Html.ActionLink("Eliminar", "AbrirEliminarMantenimiento", new { _iId_Mantenimiento = item.idMantenimiento }, new { @class = "btn btn-danger" })
             </td>
         </tr>
 }
