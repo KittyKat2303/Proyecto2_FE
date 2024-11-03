@@ -1,69 +1,55 @@
 ﻿@model IEnumerable<Proyecto1_KatherineMurillo.Models.cls_Mantenimiento>
 
 @{
-    ViewData["Title"] = "ListadoMantenimiento";
+    ViewData["Title"] = "FiltrarMantenimiento";
 }
 
-<h1>Listado Mantenimiento</h1>
-
-<p>
-    <a asp-action="AbrirCrearMantenimiento" asp-controller="RegistroMantenimiento">Crear Nuevo</a>
-</p>
-
-<form asp-action="FiltrarMantenimiento" asp-controller="RegistroMantenimiento" method="get">
-    @* ASOCIO LA ACCION DEL CONTROLLLER ASP-ACTION Y LE ASIGNO EL CONTROLLER ASP-CONTROLLER *@
-    <div>
-        <label>Buscar Mantenimiento: </label>
-        <input name="_sIdBuscar" id="estado" type="search" required /> @*EL NAME COINCIDE CON EL VALOR DEL STRING QUE RECIBE*@
-        <span id="estadoFeedback" style="color: red;"></span>
-        <button type="submit" class="button btn-outline-primary font-weight-bold"> <span class="spinner-border spinner-border-sm"></span>Filtrar</button>
-    </div>
-</form>
+<h1>Filtrar Mantenimiento</h1>
 
 <table class="table">
     <thead>
         <tr>
             <th>
-                ID Mantenimiento
+                @Html.DisplayNameFor(model => model.idMantenimiento)
             </th>
             <th>
-                ID Cliente
+                @Html.DisplayNameFor(model => model.idCliente)
             </th>
             <th>
-                Fecha Ejecutado
+                @Html.DisplayNameFor(model => model.fechaEjecutado)
             </th>
             <th>
-                Fecha Agendado
+                @Html.DisplayNameFor(model => model.fechaAgendado)
             </th>
             <th>
-                Metros Propiedad
+                @Html.DisplayNameFor(model => model.metrosPropiedad)
             </th>
             <th>
-                Metros Cerca Viva
+                @Html.DisplayNameFor(model => model.metrosCercaViva)
             </th>
             <th>
-                Dias Sin Chapia
+                @Html.DisplayNameFor(model => model.diasSinChapia)
             </th>
             <th>
-                Fecha Otra Chapia
+                @Html.DisplayNameFor(model => model.fechaOtraChapia)
             </th>
             <th>
-                Tipo Zacate
+                @Html.DisplayNameFor(model => model.tipoZacate)
             </th>
             <th>
-                Aplicación Producto
+                @Html.DisplayNameFor(model => model.aplicacionProducto)
             </th>
             <th>
-                Producto Aplicado
+                @Html.DisplayNameFor(model => model.productoAplicado)
             </th>
             <th>
-                Costo Chapia
+                @Html.DisplayNameFor(model => model.costoChapia)
             </th>
             <th>
-                Costo Aplicación Producto
+                @Html.DisplayNameFor(model => model.costoAplicacionProducto)
             </th>
             <th>
-                Estado Mantenimiento
+                @Html.DisplayNameFor(model => model.estadoMantenimiento)
             </th>
             <th></th>
         </tr>
@@ -112,12 +98,11 @@
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.estadoMantenimiento)
-            </td>
-            <td>
-                    @Html.ActionLink("Modificar", "AbrirModificarMantenimiento", new { _iId_Mantenimiento = item.idMantenimiento }, new { @class = "btn btn-warning" }) |
-                    @Html.ActionLink("Eliminar", "AbrirEliminarMantenimiento", new { _iId_Mantenimiento = item.idMantenimiento }, new { @class = "btn btn-danger" })
-            </td>
+            </td>           
         </tr>
 }
     </tbody>
 </table>
+<div>
+    <a asp-action="ListadoMantenimiento" asp-controller="RegistroMantenimiento">Regresar al Listado</a>
+</div>

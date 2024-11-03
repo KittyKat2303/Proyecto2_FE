@@ -10,6 +10,16 @@
     <a asp-action="AbrirCrearClientes" asp-controller="RegistroClientes">Crear Nuevo</a>
 </p>
 
+<form asp-action="FiltrarClientes" asp-controller="RegistroClientes" method="get">
+    @* ASOCIO LA ACCION DEL CONTROLLLER ASP-ACTION Y LE ASIGNO EL CONTROLLER ASP-CONTROLLER *@
+    <div>
+        <label>Buscar Clientes: </label>
+        <input name="_sIdBuscar" id="estado" type="search" required /> @*EL NAME COINCIDE CON EL VALOR DEL STRING QUE RECIBE*@
+        <span id="estadoFeedback" style="color: red;"></span>
+        <button type="submit" class="button btn-outline-primary font-weight-bold"> <span class="spinner-border spinner-border-sm"></span>Filtrar</button>
+    </div>
+</form>
+
 <table class="table">
     <thead>
         <tr>

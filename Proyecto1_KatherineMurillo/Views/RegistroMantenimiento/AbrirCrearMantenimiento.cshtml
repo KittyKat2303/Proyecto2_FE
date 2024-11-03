@@ -13,7 +13,7 @@
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
                 <label class="control-label">Digite el ID del mantenimiento:</label>
-                <input asp-for="idMantenimiento" maxlength="9" class="form-control" inputmode="numeric" pattern="[0-9]*" />
+                <input asp-for="idMantenimiento" maxlength="9" class="form-control" id="IdMantenimiento" inputmode="numeric" pattern="[0-9]*" />
                 <span asp-validation-for="idMantenimiento" class="text-danger"></span>
             </div>
             <div class="form-group">
@@ -82,7 +82,6 @@
                 <label class="control-label">Costo de la chapia:</label>
                 <input id="PrecioCostoChapia" type="text" class="form-control" readonly />
             </div>
-
             <div class="form-group">
                 <label class="control-label">Costo de la aplicación del producto:</label>
                 <input id="PrecioAplicacionProducto" type="text" class="form-control" readonly />
@@ -110,5 +109,5 @@
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
-    <script src="~/js/mantenimientos.js"></script>
+    <script src="~/js/validacionesmantenimiento.js"></script>
 }

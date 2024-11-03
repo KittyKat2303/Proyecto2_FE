@@ -367,16 +367,3 @@ document.addEventListener("DOMContentLoaded", function () {
         });
  });
 
-/*function capturarValor() {
-    // Obtener el valor del campo de entrada
-    var inputElement = document.getElementById('inputCampo');
-    var valor = inputElement.value;
-
-    // Mostrar el valor en la otra vista
-    var valorCapturadoElement = document.getElementById('valorCapturado');
-    valorCapturadoElement.textContent = valor;
-
-    // Ocultar la primera vista y mostrar la segunda vista
-    document.getElementById('vista1').style.display = 'none';
-    document.getElementById('vista2').style.display = 'block';
-}*/ 

@@ -94,43 +94,54 @@ function mostrarProximaChapia() {
     let fechaEjecucion = document.getElementById('fechaEjecucion').value;
     let preferencia = document.getElementById('manten').value;
     //Calcula los días sin chapia
-    let proximaChapia = calcularSiguienteChapia(fechaEjecucion,preferencia);
+    let proximaChapia = calcularSiguienteChapia(fechaEjecucion, preferencia);
     //Muestra el resultado
     document.getElementById('result').value = `Fecha próxima chapia: ${proximaChapia}`;
 }
+//Función para calcular los costos
 function calcularCostos() {
-    // Obtiene los valores del input
+    //Obtiene los valores del input
     const metrosPropiedad = parseFloat(document.getElementById("MetrosPropiedad").value) || 0;
     const metrosCercaViva = parseFloat(document.getElementById("MetrosCercaViva").value) || 0;
     const costoChapia = parseFloat(document.getElementById("CostoChapia").value) || 0;
     const costoProducto = parseFloat(document.getElementById("CostoProducto").value) || 0;
 
-    // Calcula Precio Costo Chapia: (A*C) + (B*C) + IVA(13%)
-    const precioCostoChapia = ((metrosPropiedad * costoChapia) + (metrosCercaViva * costoChapia)) * 1.13;
+    //Determina el descuento en función de MetrosPropiedad
+    let descuento = 0;
+    if (metrosPropiedad >= 400 && metrosPropiedad <= 900) {
+        descuento = 0.02;
+    } else if (metrosPropiedad >= 901 && metrosPropiedad <= 1500) {
+        descuento = 0.03;
+    } else if (metrosPropiedad >= 1501 && metrosPropiedad <= 2000) {
+        descuento = 0.04;
+    } else if (metrosPropiedad > 2000) {
+        descuento = 0.05;
+    }
+
+    //Calcula Precio Costo Chapia con descuento: (A*C) + (B*C) - descuento + IVA(13%)
+    let precioCostoChapia = ((metrosPropiedad * costoChapia) + (metrosCercaViva * costoChapia));
+    precioCostoChapia -= precioCostoChapia * descuento; // Aplica descuento
+    precioCostoChapia *= 1.13; // Aplica IVA
     document.getElementById("PrecioCostoChapia").value = precioCostoChapia.toFixed(2);
 
-    // Verifica si aplica el producto
+    //Verifica si aplica el producto
     const aplicaProducto = document.getElementById("AplicacionProducto").value === "Sí";
     let precioAplicacionProducto = 0;
     let precioTotal;
 
     if (aplicaProducto) {
-        // Calcula Precio Aplicación Producto: Precio Costo Chapia * D + IVA(13%)
-        precioAplicacionProducto = precioCostoChapia * costoProducto * 1.13;
+        //Calcula Precio Aplicación Producto con descuento
+        precioAplicacionProducto = (precioCostoChapia / 1.13) * costoProducto; // Sin IVA
+        precioAplicacionProducto -= precioAplicacionProducto * descuento; // Aplica descuento
+        precioAplicacionProducto *= 1.13; // Aplica IVA
         document.getElementById("PrecioAplicacionProducto").value = precioAplicacionProducto.toFixed(2);
 
-        // Calcula Precio total con Aplicación Producto
-        precioTotal = (((metrosPropiedad * (costoChapia + costoProducto)) + (metrosCercaViva * (costoChapia + costoProducto))) * 1.13).toFixed(2);
-        document.getElementById("PrecioTotalConAplicacion").value = precioTotal;
+        //Calcula Precio total con Aplicación Producto
+        precioTotal = precioCostoChapia + precioAplicacionProducto;
+        document.getElementById("PrecioTotalConAplicacion").value = precioTotal.toFixed(2);
     } else {
-        // Si no aplica producto, coloca Precio total sin Aplicación Producto
-        precioTotal = precioCostoChapia.toFixed(2);
+        //Si no aplica producto, coloca Precio total sin Aplicación Producto
         document.getElementById("PrecioAplicacionProducto").value = "0.00";
-        document.getElementById("PrecioTotalConAplicacion").value = precioTotal;
+        document.getElementById("PrecioTotalConAplicacion").value = precioCostoChapia.toFixed(2);
     }
 }
-
-
-
-
-
